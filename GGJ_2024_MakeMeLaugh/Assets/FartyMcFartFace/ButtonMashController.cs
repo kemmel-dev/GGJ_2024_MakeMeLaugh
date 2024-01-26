@@ -12,4 +12,9 @@ public class ButtonMashController : MonoBehaviour
     {
         
     }
+
+    public void ButtonMashed()
+    {
+        amountOfButtonMashes++;
+    }
 }
