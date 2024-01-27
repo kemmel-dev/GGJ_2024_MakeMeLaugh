@@ -22,6 +22,7 @@ namespace ThroneRoom.Scripts
         {
             _thrones.ForEach(throne => throne.Arranger.Arrange(numSteps));
             StartThroneSequence();
+            maxMinigameIndex = SceneManager.sceneCount;
         }
 
         public async void StartThroneSequence()
@@ -53,7 +54,7 @@ namespace ThroneRoom.Scripts
 
         private void LoadNewMinigame()
         {
-            SceneManager.LoadScene(Random.Range(minMinigameIndex, maxMinigameIndex + 1));
+            SceneManager.LoadScene(Random.Range(minMinigameIndex, SceneManager.sceneCount));
             Debug.LogWarning("Load minigame here!");
         }
 

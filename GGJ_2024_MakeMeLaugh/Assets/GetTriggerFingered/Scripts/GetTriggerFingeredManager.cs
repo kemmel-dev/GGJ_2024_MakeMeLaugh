@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GetTriggerFingeredManager : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class GetTriggerFingeredManager : MonoBehaviour
         if(scores.Count == 4)
         {
             GameManager.Instance.SetScorePerPlayer(scores);
+            SceneManager.LoadScene("ThroneRoom");
         }
     }
 

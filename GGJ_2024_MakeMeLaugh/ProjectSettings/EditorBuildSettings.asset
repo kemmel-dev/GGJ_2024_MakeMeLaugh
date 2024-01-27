@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FartyMcFartFace.unity
     guid: b06f6e8754d8b98488e96505e4dd6413
+  - enabled: 1
+    path: Assets/Scenes/GetTriggerFingered.unity
+    guid: cf11c8c8560e2a94a89d12e1eede9e0f
   m_configObjects: {}
