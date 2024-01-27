@@ -10,6 +10,8 @@ public class PigSpawner : MonoBehaviour
 	public float SpawnDelay = 0.5f;
 	public int PigAmount = 0;
 	public int MaxPigAmount = 10;
+	public float XRange = 3;
+	public float YRange = 3;
 
 	private void Awake()
 	{
@@ -26,7 +28,7 @@ public class PigSpawner : MonoBehaviour
 	{
 		for (int i = 0; i < MaxPigAmount; i++)
 		{
-			Instantiate(PigPrefab, Vector3.zero, Quaternion.identity);
+			Instantiate(PigPrefab, Vector3.zero + new Vector3(Random.Range(-XRange / 2f, XRange / 2f), Random.Range(-YRange / 2f, YRange / 2f)), Quaternion.identity);
 			PigAmount++;
 		}
 

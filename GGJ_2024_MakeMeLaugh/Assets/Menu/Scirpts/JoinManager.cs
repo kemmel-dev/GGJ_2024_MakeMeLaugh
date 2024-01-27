@@ -28,7 +28,7 @@ public class JoinManager : MonoBehaviour
 		{
 			GameManager.Instance.PlayerIM.DisableJoining();
 			//TODO: Load correct scene
-			UnityEngine.SceneManagement.SceneManager.LoadScene("SampleMiniGame");
+			UnityEngine.SceneManagement.SceneManager.LoadScene("PigMiniGame");
 			Debug.LogWarning("TODO: Load correct scene");
 		}
 	}
