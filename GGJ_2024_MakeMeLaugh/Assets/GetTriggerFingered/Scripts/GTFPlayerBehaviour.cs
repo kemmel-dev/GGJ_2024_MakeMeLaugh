@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Unity.VisualScripting;
 using TMPro;
 
 public class GTFPlayerBehaviour : MiniGamePlayerController
@@ -18,6 +19,8 @@ public class GTFPlayerBehaviour : MiniGamePlayerController
     public AudioClip clip;
     [Range(0f, 1f)]
     public float volume = 1f;
+    private float objectWidth;
+    private float objectHeight;
 
     public override void Initialize(PlayerController playerController)
     {
@@ -25,7 +28,7 @@ public class GTFPlayerBehaviour : MiniGamePlayerController
         playerController.LeftTrigger += PlayerControllerOnLeftTrigger;
         playerController.RightTrigger += PlayerControllerOnRightTrigger;
         body.transform.GetComponent<SpriteRenderer>().color = playerController.PlayerData.color;
-
+        SetupJester();
     }
     void Start()
     {
@@ -108,5 +111,15 @@ public class GTFPlayerBehaviour : MiniGamePlayerController
         spawner.GetComponent<SpawnerBehaviour>().Starter();
         timerText.gameObject.SetActive(false);
         StopCoroutine(CountDown());
+    }
+    private void SetupJester()
+    {
+        var jester = Instantiate(PlayerControllerReference.PlayerData.playerModel, body.transform);
+        var coll = jester.GetComponentInChildren<MeshFilter>().AddComponent<BoxCollider2D>();
+        objectWidth = coll.bounds.size.x;
+        objectHeight = coll.bounds.size.y;
+        jester.transform.localPosition = Vector3.zero;
+        jester.transform.localScale = Vector3.one * 1.5f;
+        jester.transform.localRotation = Quaternion.Euler(0, 180, 0);
     }
 }
