@@ -7,7 +7,8 @@ using UnityEngine.InputSystem;
 public class ButtonMashController : MiniGamePlayerController
 {
     public int amountOfButtonMashes = 0;
-
+    public bool canMash;
+ 
     public override void Initialize(PlayerController playerController)
     {
         base.Initialize(playerController);

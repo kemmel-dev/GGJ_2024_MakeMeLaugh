@@ -9,9 +9,12 @@ EditorBuildSettings:
     path: Assets/Scenes/JoinScene.unity
     guid: 0cd79c09aaa786443ae6d575bc5c009b
   - enabled: 1
-    path: Assets/SampleMinigame/SampleMiniGame.unity
+    path: Assets/Scenes/ThroneRoom.unity
+    guid: ca0eec7b2c0d0174997e200b03ecde7c
+  - enabled: 1
+    path: Assets/SampleMinigame/PigMiniGame.unity
     guid: 5721415374f4cd94881d3c4817b41cca
   - enabled: 1
-    path: Assets/Scenes/GetTriggerFingered.unity
-    guid: cf11c8c8560e2a94a89d12e1eede9e0f
+    path: Assets/Scenes/FartyMcFartFace.unity
+    guid: b06f6e8754d8b98488e96505e4dd6413
   m_configObjects: {}
