@@ -8,7 +8,8 @@ public class ReadyController : MonoBehaviour
 	{
 		if (PlayerData.ready)
 		{
-			GetComponent<SpriteRenderer>().color = PlayerData.color;
+			//TODO: set some sort of sprite to checkmark
+			//GetComponent<SpriteRenderer>().color = PlayerData.color;
 		}
 	}
 }
