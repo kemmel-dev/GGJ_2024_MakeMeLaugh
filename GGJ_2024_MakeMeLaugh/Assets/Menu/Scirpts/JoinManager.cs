@@ -2,11 +2,10 @@
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 
 public class JoinManager : MonoBehaviour
 {
-	public ReadyController ReadyControllerPrefab;
+	public List<ReadyController> ReadyControllerPrefabs = new List<ReadyController>();
 	public List<Transform> SpawnPoints = new List<Transform>();
 
 	private List<PlayerInput> _Players = new List<PlayerInput>();
@@ -21,7 +20,8 @@ public class JoinManager : MonoBehaviour
 	public void OnPlayerJoin(PlayerInput playerInput)
 	{
 		_Players.Add(playerInput);
-		Instantiate(ReadyControllerPrefab, SpawnPoints[playerInput.playerIndex].position, Quaternion.identity).PlayerData = playerInput.GetComponent<PlayerData>();
+		Instantiate(ReadyControllerPrefabs[playerInput.playerIndex], SpawnPoints[playerInput.playerIndex].position, Quaternion.identity)
+			.init(playerInput.GetComponent<PlayerController>());
 	}
 
 
@@ -31,7 +31,7 @@ public class JoinManager : MonoBehaviour
 		{
 			GameManager.Instance.PlayerIM.DisableJoining();
 
-		
+
 			Debug.LogWarning("TODO: Load correct scene");
 
 			UnityEngine.SceneManagement.SceneManager.LoadScene(firstSceneName);

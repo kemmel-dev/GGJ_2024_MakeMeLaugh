@@ -257,6 +257,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77266a9b00fa13648b96bda2916bce64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Colors:
+  - {r: 0.46666667, g: 0, b: 0, a: 1}
+  - {r: 0, g: 0, b: 0.53333336, a: 1}
+  - {r: 0, g: 0.33333334, b: 0, a: 1}
+  - {r: 0.4, g: 0, b: 0.6, a: 1}
+  PlayerModels:
+  - {fileID: 919132149155446097, guid: a60560593880bfa438cace5c87a49e85, type: 3}
+  - {fileID: 919132149155446097, guid: 8bccca644f5258a4a91ff4a075f8e2ad, type: 3}
+  - {fileID: 919132149155446097, guid: cbe0098c8c667c546a84fddd21041722, type: 3}
+  - {fileID: 919132149155446097, guid: c631925ce14a2a44e8c47ee7cd1d5dfd, type: 3}
   ready: 0
   points: 0
   pointsThisRound: 0
+  isPlaying: 1
