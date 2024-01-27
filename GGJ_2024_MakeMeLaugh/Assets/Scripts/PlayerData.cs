@@ -18,4 +18,6 @@ public class PlayerData : MonoBehaviour
 	public int points = 0;
 	public int pointsThisRound = 0;
 	public Color color => Colors[PlayerControllerReference.PlayerIndex];
+
+	public bool isPlaying = true;
 }

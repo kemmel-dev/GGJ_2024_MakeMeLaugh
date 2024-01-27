@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -44,6 +45,7 @@ public class GameManager : MonoBehaviour
 	{
 		if (PlayerIM.playerCount >= PlayerIM.maxPlayerCount) return;
 		var playerInput = Instantiate(PlayerIM.playerPrefab, Vector3.zero, Quaternion.identity).GetComponent<PlayerInput>();
+		playerInput.GetComponent<PlayerController>().PlayerData.isPlaying = false;
 		playerInput.DeactivateInput();
 	}
 
@@ -53,9 +55,26 @@ public class GameManager : MonoBehaviour
 		{
 			ExtraJoinOnPerformed(ctx);
 		}
+		DeactivateInput();
 		foreach (var player in Players)
 		{
 			player.PlayerData.ready = true;
+		}
+	}
+
+	public void DeactivateInput()
+	{
+		foreach (var player in Players)
+		{
+			player.GetComponent<PlayerInput>().DeactivateInput();
+		}
+	}
+
+	public void ActivateInput()
+	{
+		foreach (var player in Players.Where(x => x.PlayerData.isPlaying))
+		{
+			player.GetComponent<PlayerInput>().ActivateInput();
 		}
 	}
 
@@ -64,4 +83,34 @@ public class GameManager : MonoBehaviour
 		Players.Add(playerInput.GetComponent<PlayerController>());
 		PlayerJoined?.Invoke(playerInput);
 	}
+
+	public void SetScorePerPlayer(Dictionary<PlayerController, int> pointPerPlayer)
+	{
+		Dictionary<int, List<PlayerController>> Scores = new();
+		foreach (var playerPointPair in pointPerPlayer)
+		{
+			var key = playerPointPair.Key;
+			var value = playerPointPair.Value;
+			if (Scores.ContainsKey(playerPointPair.Value))
+			{
+				Scores[value].Add(key);
+			}
+			else
+			{
+				Scores.Add(value, new List<PlayerController> { key });
+			}
+		}
+		var orderedScores = Scores.OrderByDescending(x => x.Key).ToList();
+		int scoreToGive = 3;
+		foreach (var kvp in orderedScores)
+		{
+			foreach (var player in kvp.Value)
+			{
+				player.PlayerData.pointsThisRound += scoreToGive;
+			}
+
+			scoreToGive -= kvp.Value.Count;
+		}
+	}
+
 }
