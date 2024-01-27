@@ -13,7 +13,11 @@ public class BallsackMovement : MiniGamePlayerController
     private bool inBallsackArea = false;
     private Vector2 _LeftStickInput;
     private Rigidbody2D rigidbody;
-    public int score = 0; 
+    public int score = 0;
+    Vector2 screenBounds;
+    float objectWidth;
+    float objectHeight;
+    public Color color;
 
 
     public override void Initialize(PlayerController playerController)
@@ -23,13 +27,28 @@ public class BallsackMovement : MiniGamePlayerController
         playerController.SouthButton += PlayerControllerOnSouthButton;
 
         manager = FindAnyObjectByType<ApesHaveBallsacksManager>().GetComponent<ApesHaveBallsacksManager>();
-        rigidbody =  GetComponent<Rigidbody2D>();
-        Debug.Log(rigidbody.gameObject.name);
+        rigidbody = GetComponent<Rigidbody2D>();
+        objectWidth = GetComponent<Collider2D>().bounds.extents.x;
+        objectHeight = GetComponent<Collider2D>().bounds.extents.y;
+
+        transform.GetComponent<SpriteRenderer>().color = playerController.PlayerData.color;
+        SpriteRenderer[] spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
+        Debug.Log(spriteRenderers.Length);
+        foreach(SpriteRenderer spriteRenderer in spriteRenderers)
+        {
+            spriteRenderer.color = playerController.PlayerData.color;
+            color = playerController.PlayerData.color;
+        }
     }
 
+    private void Start()
+    {
+        Camera mainCamera = Camera.main;
+        screenBounds = mainCamera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, mainCamera.transform.position.z));
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.GetComponent<Transform>().parent.transform == manager.Ape.transform)
+        if (collision.GetComponent<Transform>().parent.transform == manager.Ape.transform)
         {
             inBallsackArea = true;
         }
@@ -70,6 +89,14 @@ public class BallsackMovement : MiniGamePlayerController
     void Update()
     {
         rigidbody.velocity = _LeftStickInput * speed;
+    }
+
+    void LateUpdate()
+    {
+        Vector3 viewPos = transform.position;
+        viewPos.x = Mathf.Clamp(viewPos.x, screenBounds.x * -1 + objectWidth, screenBounds.x - objectWidth);
+        viewPos.y = Mathf.Clamp(viewPos.y, screenBounds.y * -1 + objectHeight, screenBounds.y - objectHeight);
+        transform.position = viewPos;
     }
 
     private void OnDestroy()

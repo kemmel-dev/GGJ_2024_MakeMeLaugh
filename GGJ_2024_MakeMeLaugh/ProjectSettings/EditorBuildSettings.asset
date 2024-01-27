@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FartyMcFartFace.unity
     guid: b06f6e8754d8b98488e96505e4dd6413
+  - enabled: 1
+    path: Assets/Scenes/ApesHaveBallsacks.unity
+    guid: e2dadb68554a11249bbf46b6794e7045
   m_configObjects: {}
