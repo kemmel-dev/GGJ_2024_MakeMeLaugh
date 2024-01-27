@@ -14,7 +14,7 @@ public class MiniGameController : MonoBehaviour
 	{
 		if (GameManager.Instance == null)
 		{
-			UnityEngine.SceneManagement.SceneManager.LoadScene("JoinScene");
+			//UnityEngine.SceneManagement.SceneManager.LoadScene("JoinScene");
 		}
 	}
 
