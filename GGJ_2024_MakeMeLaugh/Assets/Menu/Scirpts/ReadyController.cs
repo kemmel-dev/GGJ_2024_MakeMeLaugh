@@ -2,15 +2,35 @@
 
 public class ReadyController : MonoBehaviour
 {
-	public PlayerData PlayerData;
+	private PlayerController playerController;
 
-	private void Update()
+	[SerializeField] private Transform GFX;
+	private Animator _animator;
+
+	public void init(PlayerController playerController)
 	{
-		if (PlayerData.ready)
-		{
-			//TODO: set some sort of sprite to checkmark
-			//GetComponent<SpriteRenderer>().color = PlayerData.color;
-		}
+		_animator = GetComponent<Animator>();
+		this.playerController = playerController;
+		this.playerController.ReadyAction += OnReadyAction;
+	}
+
+	public void SavePosition()
+	{
+		_animator.enabled = false;
+		transform.position = GFX.position;
+		GFX.localPosition = Vector3.zero;
+		GFX.rotation = Quaternion.Euler(0, 0, 0);
+		playerController.PlayerData.ready = true;
+	}
+
+	public void OnReadyAction()
+	{
+		_animator.SetTrigger("StartAnim");
+	}
+
+	private void OnDestroy()
+	{
+		playerController.ReadyAction -= OnReadyAction;
 	}
 }
 

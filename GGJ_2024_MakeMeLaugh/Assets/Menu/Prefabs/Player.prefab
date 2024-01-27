@@ -262,11 +262,11 @@ MonoBehaviour:
   - {r: 0, g: 0, b: 0.53333336, a: 1}
   - {r: 0, g: 0.33333334, b: 0, a: 1}
   - {r: 0.4, g: 0, b: 0.6, a: 1}
-  Materials:
-  - {fileID: 2100000, guid: 50e78588f2c60d542b07b3e1ace7ffb2, type: 2}
-  - {fileID: 2100000, guid: 17f5eb4c6f59a2247bcc3d36157a55dc, type: 2}
-  - {fileID: 2100000, guid: 5f8cd0e8d13acf34eb089171b55f1e7f, type: 2}
-  - {fileID: 2100000, guid: 202cd57ed34df07439df9abadb392c84, type: 2}
+  PlayerModels:
+  - {fileID: 919132149155446097, guid: a60560593880bfa438cace5c87a49e85, type: 3}
+  - {fileID: 919132149155446097, guid: 8bccca644f5258a4a91ff4a075f8e2ad, type: 3}
+  - {fileID: 919132149155446097, guid: cbe0098c8c667c546a84fddd21041722, type: 3}
+  - {fileID: 919132149155446097, guid: c631925ce14a2a44e8c47ee7cd1d5dfd, type: 3}
   ready: 0
   points: 0
   pointsThisRound: 0
