@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,6 +7,7 @@ public class SampleMiniGamePlayerController : MiniGamePlayerController
 	private Vector2 _LeftStickInput;
 	private Rigidbody2D _Rigidbody;
 
+	public List<PigBehaviour> GrabbablePigs = new();
 
 	public override void Initialize(PlayerController playerController)
 	{
@@ -14,8 +16,6 @@ public class SampleMiniGamePlayerController : MiniGamePlayerController
 		playerController.LeftStick += PlayerControllerOnLeftStick;
 		playerController.SouthButton += PlayerControllerOnSouthButton;
 	}
-
-
 
 	private void PlayerControllerOnLeftStick(InputAction.CallbackContext ctx)
 	{
@@ -33,8 +33,10 @@ public class SampleMiniGamePlayerController : MiniGamePlayerController
 	private void PlayerControllerOnSouthButton(InputAction.CallbackContext ctx)
 	{
 		if (!ctx.performed) return;
-
 		Debug.Log($"collect");
+		if (GrabbablePigs.Count <= 0) return;
+		GrabbablePigs[0].transform.SetParent(transform);
+		GrabbablePigs[0].Collect();
 	}
 
 	private void Start()
@@ -46,5 +48,11 @@ public class SampleMiniGamePlayerController : MiniGamePlayerController
 	public void Update()
 	{
 		_Rigidbody.velocity = _LeftStickInput;
+	}
+
+	private void OnDestroy()
+	{
+		PlayerControllerReference.LeftStick -= PlayerControllerOnLeftStick;
+		PlayerControllerReference.SouthButton -= PlayerControllerOnSouthButton;
 	}
 }

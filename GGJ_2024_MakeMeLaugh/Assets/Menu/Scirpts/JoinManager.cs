@@ -26,7 +26,7 @@ public class JoinManager : MonoBehaviour
 	{
 		if (_Players.Count >= 4 && _Players.All(x => x.GetComponent<PlayerData>().ready))
 		{
-			PlayerInputManager.instance.DisableJoining();
+			GameManager.Instance.PlayerIM.DisableJoining();
 			//TODO: Load correct scene
 			UnityEngine.SceneManagement.SceneManager.LoadScene("SampleMiniGame");
 			Debug.LogWarning("TODO: Load correct scene");

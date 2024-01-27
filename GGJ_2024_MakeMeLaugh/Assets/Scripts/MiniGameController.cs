@@ -10,7 +10,7 @@ public class MiniGameController : MonoBehaviour
 
 	public event Action MiniGameSetupFinished;
 
-	public void Awake()
+	public void Start()
 	{
 		if (GameManager.Instance == null)
 		{
