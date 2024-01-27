@@ -2,6 +2,7 @@
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class JoinManager : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class JoinManager : MonoBehaviour
 	public List<Transform> SpawnPoints = new List<Transform>();
 
 	private List<PlayerInput> _Players = new List<PlayerInput>();
+
+	[SerializeField] private string firstSceneName;
 
 	private void Start()
 	{
@@ -27,9 +30,12 @@ public class JoinManager : MonoBehaviour
 		if (_Players.Count >= 4 && _Players.All(x => x.GetComponent<PlayerData>().ready))
 		{
 			GameManager.Instance.PlayerIM.DisableJoining();
-			//TODO: Load correct scene
-			UnityEngine.SceneManagement.SceneManager.LoadScene("ApesHaveBallsacks");
+
+		
 			Debug.LogWarning("TODO: Load correct scene");
+
+			UnityEngine.SceneManagement.SceneManager.LoadScene(firstSceneName);
+
 		}
 	}
 
