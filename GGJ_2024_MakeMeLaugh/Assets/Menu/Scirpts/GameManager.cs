@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
 			Destroy(this);
 			return;
 		}
+		DontDestroyOnLoad(gameObject);
 		Instance = this;
 		CheatActions = new CheatActions();
 		CheatActions.Enable();
