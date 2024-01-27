@@ -4,28 +4,28 @@ using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 using UnityEngine.TextCore.Text;
 using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class ButtonMashGameController : MonoBehaviour
 {
     public MiniGameController miniGameController;
-    public List<GameObject> buttonMashPlayers = new List<GameObject>();
+    public List<ButtonMashController> buttonMashPlayers = new List<ButtonMashController>();
     public TextMeshProUGUI buttonMashTestCounterUGUI;
     public TextMeshProUGUI countdownUi;
     public int countdownAmount;
     public int buttonMashTimerAmount;
 
-    private int previousPlayerScore;
-    private ButtonMashController previousPlayer;
 
     private void Start()
     {
         miniGameController = FindObjectOfType<MiniGameController>();
 
-        foreach (var buttonMashPlayer in miniGameController.PlayerObjects/*FindObjectsOfType<ButtonMashController>()*/)
+        foreach (var buttonMashPlayer in FindObjectsOfType<ButtonMashController>())
         {
-            buttonMashPlayers.Add(buttonMashPlayer.gameObject);
+            buttonMashPlayers.Add(buttonMashPlayer);
         }
 
         StartCoroutine(CountdownForStartTimer(countdownAmount));
@@ -45,7 +45,8 @@ public class ButtonMashGameController : MonoBehaviour
 
         countdownUi.text = "Go!";
 
-        ToggleCanMash();
+        /*ToggleCanMash();*/
+        GameManager.Instance.ActivateInput();
         StartCoroutine(ButtonMeshTimer(buttonMashTimerAmount));
 
         yield return new WaitForSeconds(0.5f);
@@ -68,52 +69,32 @@ public class ButtonMashGameController : MonoBehaviour
     public void SelectWinner()
     {
         // Code that checks which player has the most button mashes
-        ToggleCanMash();
+        //ToggleCanMash();
+        GameManager.Instance.DeactivateInput();
+
 
         buttonMashPlayers = buttonMashPlayers.OrderByDescending(player => player.GetComponent<ButtonMashController>().amountOfButtonMashes).ToList();
 
-        buttonMashTestCounterUGUI.text = "Player 1: " + buttonMashPlayers[0].GetComponent<ButtonMashController>().amountOfButtonMashes + 
-                                         " Player 2: " + buttonMashPlayers[1].GetComponent<ButtonMashController>().amountOfButtonMashes +
-                                         " Player 3: " + buttonMashPlayers[2].GetComponent<ButtonMashController>().amountOfButtonMashes +
-                                         " Player 4: " + buttonMashPlayers[3].GetComponent<ButtonMashController>().amountOfButtonMashes;
-
-
-
-       /* // Add logic for which player gets 3, 2, 1, and 0 points for this round and load scoreboard scene
-        foreach (var player in GameManager.Instance.Players) 
+        Dictionary<PlayerController, int> playerScores = new();
+        foreach (var player in GameManager.Instance.Players)
         {
-            //int playerScore = buttonMashPlayers[i].GetComponent;
-        
-
+            playerScores.Add(player, buttonMashPlayers[player.PlayerIndex].amountOfButtonMashes);
         }
+        GameManager.Instance.SetScorePerPlayer(playerScores);
 
-        for (int i = 0; i < buttonMashPlayers.Count; i++)
-        {
-            buttonMashPlayers[i].GetComponent<ButtonMashController>().possiblePlaces = (ButtonMashController.PossiblePlaces)i;
+        buttonMashTestCounterUGUI.text = "Player 1: " + buttonMashPlayers[0].PlayerControllerReference.PlayerData.pointsThisRound +
+                                        " Player 2: " + buttonMashPlayers[1].PlayerControllerReference.PlayerData.pointsThisRound +
+                                        " Player 3: " + buttonMashPlayers[2].PlayerControllerReference.PlayerData.pointsThisRound +
+                                        " Player 4: " + buttonMashPlayers[3].PlayerControllerReference.PlayerData.pointsThisRound;
 
-            int playerScore = buttonMashPlayers[i].GetComponent<ButtonMashController>().amountOfButtonMashes;
-
-            if (playerScore == previousPlayerScore)
-            {
-                buttonMashPlayers[i].GetComponent<ButtonMashController>().possiblePlaces = previousPlayer.possiblePlaces;
-            }
-
-            previousPlayer = buttonMashPlayers[i].GetComponent<ButtonMashController>();
-            previousPlayerScore = playerScore;
-
-
-
-            buttonMashPlayers[i].GetComponent<ButtonMashController>().SetPlace();
-        }*/
-
+        // TODO Add logic for the fart visual
+        StartCoroutine(GoToScoreScene());
     }
 
-
-    public void ToggleCanMash()
+    IEnumerator GoToScoreScene()
     {
-        foreach (var buttonMashPlayer in buttonMashPlayers)
-        {
-            buttonMashPlayer.GetComponent<ButtonMashController>().canMash = !buttonMashPlayer.GetComponent<ButtonMashController>().canMash;
-        }
+        yield return new WaitForSeconds(3);
+        Debug.Log("Go To ScoreBoard Screen");
+        //SceneManager.LoadScene("ScoreBoard");
     }
 }
