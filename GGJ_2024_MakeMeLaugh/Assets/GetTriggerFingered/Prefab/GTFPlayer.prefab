@@ -175,7 +175,7 @@ MonoBehaviour:
   ballspeed: 5
   leftPoint: {fileID: 1292093036567566827}
   rightPoint: {fileID: 49143345197204643}
-  ball: {fileID: 5985776626272995092, guid: 5a322fe307b4924479e633a7d1ad45b2, type: 3}
+  ball: {fileID: 9215767120996910839, guid: 8c105445c165cc74a88b4e41fe976ab4, type: 3}
   maxBallSpeed: 40
   acceleration: 1.13
   minWaitTime: 1.5
