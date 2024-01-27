@@ -1,0 +1,54 @@
+{
+    "name": "CheatActions",
+    "maps": [
+        {
+            "name": "actions",
+            "id": "efeb872e-8cea-4b0d-b8d4-ee0af3ec299b",
+            "actions": [
+                {
+                    "name": "ExtraJoin",
+                    "type": "Button",
+                    "id": "3ff2107e-d126-4467-b36e-084f623df5df",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SetAllPlayersToReady",
+                    "type": "Button",
+                    "id": "4a74b2de-53e6-4c2f-be8b-93f943d19b68",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "6dc031be-d725-4df6-a270-7c952d785a9b",
+                    "path": "<Keyboard>/j",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ExtraJoin",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1984bd30-48d6-49b3-b748-b2025b30555d",
+                    "path": "<Keyboard>/k",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SetAllPlayersToReady",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
