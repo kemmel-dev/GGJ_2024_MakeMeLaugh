@@ -15,6 +15,11 @@ public class SpawnerBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
+    }
+
+    public void Starter()
+    {
         StartCoroutine(SpawnBall());
     }
 
@@ -52,7 +57,6 @@ public class SpawnerBehaviour : MonoBehaviour
 
         
     }
-
     private float GetRandom()
     {
         float rdm = Random.Range(0f, 1f);
