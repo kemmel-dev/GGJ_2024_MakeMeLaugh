@@ -24,6 +24,12 @@ namespace ThroneRoom.Scripts
         public async void StartThroneSequence()
         {
             var tasks = new List<Task>();
+
+            // Load all player score data
+            foreach (var playerController in GameManager.Instance.Players)
+            {
+                SetPlayerToPoint(playerController.PlayerIndex, playerController.PlayerData.points);
+            }
             
             // Wait before advancing
             await Task.Delay(delayBeforeStartingMilliseconds);
@@ -31,10 +37,7 @@ namespace ThroneRoom.Scripts
             // Load all player score data
             foreach (var playerController in GameManager.Instance.Players)
             {
-                var player = playerController.PlayerData;
-                var index = playerController.PlayerIndex;
-                SetPlayerToPoint(index, player.points);
-                tasks.Add(AdvancePlayer(index, player.pointsThisRound));
+                tasks.Add(AdvancePlayer(playerController.PlayerIndex, playerController.PlayerData.pointsThisRound));
             }
 
             // Wait until all players have advanced
