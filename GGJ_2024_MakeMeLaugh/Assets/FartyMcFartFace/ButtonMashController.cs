@@ -4,13 +4,15 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class ButtonMashController : MonoBehaviour
+public class ButtonMashController : MiniGamePlayerController
 {
     public int amountOfButtonMashes = 0;
 
-    private void Awake()
+    public override void Initialize(PlayerController playerController)
     {
-        FindObjectOfType<PlayerContoller>().SouthButton += ButtonMashController_SouthButton; 
+        base.Initialize(playerController);
+
+        playerController.SouthButton += ButtonMashController_SouthButton;
     }
 
     private void ButtonMashController_SouthButton(InputAction.CallbackContext ctx)
@@ -28,6 +30,6 @@ public class ButtonMashController : MonoBehaviour
 
     private void OnDestroy()
     {
-        FindObjectOfType<PlayerContoller>().SouthButton -= ButtonMashController_SouthButton;
+        PlayerControllerReference.SouthButton -= ButtonMashController_SouthButton;
     }
 }

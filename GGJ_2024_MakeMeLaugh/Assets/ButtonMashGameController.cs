@@ -7,24 +7,35 @@ using UnityEngine.TextCore.Text;
 
 public class ButtonMashGameController : MonoBehaviour
 {
+    public MiniGameController miniGameController;
     public List<ButtonMashController> buttonMashPlayers = new List<ButtonMashController>();
     public TextMeshProUGUI buttonMashTestCounterUGUI;
+    public int countdownAmount;
     public int buttonMashTimerAmount; 
-    public SpawnPointManager spawnPointManager;
+    
 
     private void Start()
     {
-        foreach (var player in FindObjectsOfType<ButtonMashController>()) 
-        { 
-            buttonMashPlayers.Add(player);
-        }
+        miniGameController = FindObjectOfType<MiniGameController>();
 
-        FindObjectOfType<SpawnPointManager>().InitiateButtonMashSpawnpoints(this);
-
+        StartCoroutine(CountdownForStartTimer(countdownAmount));
         StartCoroutine(ButtonMeshTimer(buttonMashTimerAmount));
     }
 
     // Replace with Timer from GameController when available
+    public IEnumerator CountdownForStartTimer(int countdownAmount)
+    {
+        int timer = countdownAmount;
+        while (timer > 0)
+        {
+            Debug.Log(timer);
+            yield return new WaitForSeconds(1);
+            timer--;
+        }
+
+        SelectWinner();
+    }
+
     public IEnumerator ButtonMeshTimer(int buttonMashTimerAmount)
     {
         int timer = buttonMashTimerAmount;
