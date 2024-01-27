@@ -475,6 +475,10 @@ MonoBehaviour:
   - {fileID: 675173377}
   - {fileID: 884358011}
   - {fileID: 306791317}
+  - {fileID: 401456237}
+  - {fileID: 1882455154}
+  - {fileID: 31965563}
+  - {fileID: 1325492254}
   minSpawnDelay: 0.2
   maxSpawnDelay: 0.4
 --- !u!4 &926870504
