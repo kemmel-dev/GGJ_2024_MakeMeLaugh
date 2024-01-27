@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/SampleMinigame/SampleMiniGame.unity
     guid: 5721415374f4cd94881d3c4817b41cca
+  - enabled: 1
+    path: Assets/Scenes/ThroneRoom.unity
+    guid: ca0eec7b2c0d0174997e200b03ecde7c
   m_configObjects: {}

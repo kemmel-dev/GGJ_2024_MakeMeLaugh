@@ -12,5 +12,11 @@ namespace ThroneRoom.Scripts
         {
             _textMeshPro.text = (_score += amount).ToString();
         }
+
+        public void SetScore(int points)
+        {
+            _score = points;
+            _textMeshPro.text = _score.ToString();
+        }
     }
 }
