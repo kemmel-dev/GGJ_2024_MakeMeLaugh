@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerContoller : MonoBehaviour
 {
-	public bool ready = false;
+	public PlayerData PlayerData;
 
 	public event Action<InputAction.CallbackContext> LeftStick;
 
@@ -15,19 +15,13 @@ public class PlayerContoller : MonoBehaviour
 
 	public event Action<InputAction.CallbackContext> RightTrigger;
 	public event Action<InputAction.CallbackContext> LeftTrigger;
-
 	public int PlayerIndex => GetComponent<PlayerInput>().playerIndex;
 
 	private void Awake()
 	{
+		DontDestroyOnLoad(gameObject);
+		PlayerData = GetComponent<PlayerData>();
 		name = $"{name}{PlayerIndex}";
-		LeftStick += (ctx) => Debug.Log($"{name}, leftStick");
-		NorthButton += (ctx) => Debug.Log($"{name}, NorthButton");
-		SouthButton += (ctx) => Debug.Log($"{name}, SouthButton");
-		WestButton += (ctx) => Debug.Log($"{name}, WestButton");
-		EastButton += (ctx) => Debug.Log($"{name}, EastButton");
-		RightTrigger += (ctx) => Debug.Log($"{name}, RightTrigger");
-		LeftTrigger += (ctx) => Debug.Log($"{name}, LeftTrigger");
 	}
 
 
@@ -59,8 +53,8 @@ public class PlayerContoller : MonoBehaviour
 	{
 		LeftTrigger?.Invoke(ctx);
 	}
-
-	private void OnDestroy()
+	public void OnPlayerReady(InputAction.CallbackContext ctx)
 	{
+		PlayerData.ready = true;
 	}
 }

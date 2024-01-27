@@ -1,10 +1,13 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
 	public static GameManager Instance { get; private set; }
-	public PlayerInputManager PlayerIM;
+
+	public event Action<PlayerInput> PlayerJoined;
+
 
 	private void Awake()
 	{
@@ -16,4 +19,8 @@ public class GameManager : MonoBehaviour
 		Instance = this;
 	}
 
+	public void OnPlayerJoined(PlayerInput playerInput)
+	{
+		PlayerJoined?.Invoke(playerInput);
+	}
 }
