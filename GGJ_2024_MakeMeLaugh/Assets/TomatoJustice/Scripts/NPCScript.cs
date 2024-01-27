@@ -4,6 +4,7 @@ public class NPCScript : MonoBehaviour
 {
     private bool movingRight = true;
     [SerializeField] private float speed = 5f;
+    private bool FriendlyFire;
 
     void Update()
     {
@@ -18,23 +19,14 @@ public class NPCScript : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        Debug.Log(other.gameObject.name);
-        if (other.gameObject.CompareTag("ProjectileTomJustice"))
-        {
-            // Increase player score
-           // PlayerScript.IncreaseScore(1); // Static method in PlayerScript to increase score
-            Destroy(other.gameObject); // Destroy the tomato
-            Destroy(gameObject); // Destroy the NPC
-        }
-    }
+   
 
     public void SetSpeed(float speedValue)
     {
         speed = speedValue;
     }
 
+  
     // New method to set the direction
     public void SetDirection(bool isMovingRight)
     {
