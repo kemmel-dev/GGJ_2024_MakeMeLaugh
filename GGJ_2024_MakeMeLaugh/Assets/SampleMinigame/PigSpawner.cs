@@ -5,8 +5,8 @@ public class PigSpawner : MonoBehaviour
 {
 	public static PigSpawner Instance { get; private set; }
 
-	public GameObject PigPrefab;
-
+	public PigBehaviour PigPrefab;
+	public Transform SpawnPosition;
 	public float SpawnDelay = 0.5f;
 	public int PigAmount = 0;
 	public int MaxPigAmount = 10;
@@ -28,11 +28,17 @@ public class PigSpawner : MonoBehaviour
 	{
 		for (int i = 0; i < MaxPigAmount; i++)
 		{
-			Instantiate(PigPrefab, Vector3.zero + new Vector3(Random.Range(-XRange / 2f, XRange / 2f), Random.Range(-YRange / 2f, YRange / 2f)), Quaternion.identity);
-			PigAmount++;
+			CreatePig();
 		}
 
 		StartCoroutine(SpawnPig());
+	}
+
+	private void CreatePig()
+	{
+		var pig = Instantiate(PigPrefab, SpawnPosition.position + new Vector3(Random.Range(-XRange / 2f, XRange / 2f), 0, Random.Range(-YRange / 2f, YRange / 2f)), Quaternion.identity);
+		pig.pigMiniGameController = GetComponent<PigMiniGameController>();
+		PigAmount++;
 	}
 
 	private IEnumerator SpawnPig()
@@ -41,8 +47,7 @@ public class PigSpawner : MonoBehaviour
 		{
 			if (PigAmount < MaxPigAmount)
 			{
-				Instantiate(PigPrefab, Vector3.zero + new Vector3(Random.Range(-XRange / 2f, XRange / 2f), Random.Range(-YRange / 2f, YRange / 2f)), Quaternion.identity);
-				PigAmount++;
+				CreatePig();
 			}
 			yield return new WaitForSeconds(SpawnDelay);
 		}
