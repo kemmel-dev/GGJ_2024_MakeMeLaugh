@@ -115,7 +115,7 @@ public class TomatoJusticePlayerController : MiniGamePlayerController
     {
         // Unsubscribe to avoid memory leaks
       
-            playerController.SouthButton -= OnSouthButtonPressed;
+            PlayerControllerReference.SouthButton -= OnSouthButtonPressed;
       
     }
 }
