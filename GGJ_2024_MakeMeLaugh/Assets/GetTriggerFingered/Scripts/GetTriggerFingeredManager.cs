@@ -24,6 +24,11 @@ public class GetTriggerFingeredManager : MonoBehaviour
             winnerText.gameObject.SetActive(true);
             winnerText.text = "Player " + (player.PlayerIndex + 1) + " won!";
             GameManager.Instance.SetScorePerPlayer(scores);
+
+            foreach(TextMeshProUGUI text in PlayerScoreTexts)
+            {
+                text.gameObject.SetActive(false);
+            }
             StartCoroutine(endScreen());
         }
     }
