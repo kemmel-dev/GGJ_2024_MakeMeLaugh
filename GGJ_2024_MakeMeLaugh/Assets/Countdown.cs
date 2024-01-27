@@ -12,6 +12,7 @@ public class CountdownTimer : MonoBehaviour
     private void Start()
     {
         currentTime = totalTime;
+        GameManager.Instance.ActivateInput();
     }
 
     private void Update()
@@ -56,5 +57,6 @@ public class CountdownTimer : MonoBehaviour
         
         Debug.Log("Game Over!");
         Time.timeScale = 0f; // Pause the game (set timeScale to 0 to stop time)
+        GameManager.Instance.DeactivateInput();
     }
 }
