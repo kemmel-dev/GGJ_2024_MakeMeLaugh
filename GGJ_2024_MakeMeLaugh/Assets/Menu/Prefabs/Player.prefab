@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5707045215520981467}
   - component: {fileID: 9114074788008169768}
   - component: {fileID: 7462095523656811300}
-  - component: {fileID: 8704673944002769460}
+  - component: {fileID: 2949295053280391408}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -211,6 +211,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 74e066bd-fbad-42e3-8c5e-5a9cd9705104
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7462095523656811300}
+        m_TargetAssemblyTypeName: PlayerContoller, Assembly-CSharp
+        m_MethodName: OnPlayerReady
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 734bd231-69c9-4c71-8621-94c330171908
+    m_ActionName: Player/Ready[/DualShock4GamepadHID/start]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -228,9 +244,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7d5551244e85bd499d3292eb148813b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ready: 0
-  Playing: 0
---- !u!114 &8704673944002769460
+  PlayerData: {fileID: 2949295053280391408}
+--- !u!114 &2949295053280391408
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -239,6 +254,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 5848344204625225812}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f8764c58f5306a45aded88772ecd6db, type: 3}
+  m_Script: {fileID: 11500000, guid: 77266a9b00fa13648b96bda2916bce64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ready: 0
+  points: 0
+  pointsThisRound: 0
