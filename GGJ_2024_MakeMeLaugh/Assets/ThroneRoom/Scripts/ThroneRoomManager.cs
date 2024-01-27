@@ -54,7 +54,7 @@ namespace ThroneRoom.Scripts
 
         private void LoadNewMinigame()
         {
-            SceneManager.LoadScene("TomatoJustice");//Random.Range(minMinigameIndex, SceneManager.sceneCount));
+            SceneManager.LoadScene(Random.Range(minMinigameIndex, SceneManager.sceneCountInBuildSettings));
             Debug.LogWarning("Load minigame here!");
         }
 
