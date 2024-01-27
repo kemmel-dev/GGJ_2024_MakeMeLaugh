@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerContoller : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
 	public PlayerData PlayerData;
 
@@ -23,7 +23,6 @@ public class PlayerContoller : MonoBehaviour
 		PlayerData = GetComponent<PlayerData>();
 		name = $"{name}{PlayerIndex}";
 	}
-
 
 	public void OnPlayerLeftStick(InputAction.CallbackContext ctx)
 	{

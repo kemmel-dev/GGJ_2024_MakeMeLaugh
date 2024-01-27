@@ -171,8 +171,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a546b817f2aa6df4ab01734bfd311326, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  readyControllerPrefab: {fileID: 1558339281939634361, guid: d55b43b397d9dd046a5ca03f547b6588, type: 3}
-  spawnPoints:
+  ReadyControllerPrefab: {fileID: 1558339281939634361, guid: d55b43b397d9dd046a5ca03f547b6588, type: 3}
+  SpawnPoints:
   - {fileID: 540099533}
   - {fileID: 433081133}
   - {fileID: 1358624461}
@@ -455,6 +455,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c29aa2f1b3b18d64dad71b938099a15b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Players: []
 --- !u!1001 &7265818056552421861
 PrefabInstance:
   m_ObjectHideFlags: 0
