@@ -13,6 +13,7 @@ public class BallsackMovement : MiniGamePlayerController
     private bool inBallsackArea = false;
     private Vector2 _LeftStickInput;
     private Rigidbody2D rigidbody;
+    public int score = 0; 
 
 
     public override void Initialize(PlayerController playerController)
@@ -31,7 +32,6 @@ public class BallsackMovement : MiniGamePlayerController
         if(collision.GetComponent<Transform>().parent.transform == manager.Ape.transform)
         {
             inBallsackArea = true;
-            Debug.Log("in");
         }
     }
 
@@ -40,7 +40,6 @@ public class BallsackMovement : MiniGamePlayerController
         if (collision.GetComponent<Transform>().parent.transform == manager.Ape.transform)
         {
             inBallsackArea = false;
-            Debug.Log("gone");
         }
     }
 
@@ -64,12 +63,12 @@ public class BallsackMovement : MiniGamePlayerController
         if (inBallsackArea)
         {
             manager.m_MyEvent.Invoke();
+            score += 1;
         }
     }
 
     void Update()
     {
-        Debug.Log(_LeftStickInput.x);
         rigidbody.velocity = _LeftStickInput * speed;
     }
 

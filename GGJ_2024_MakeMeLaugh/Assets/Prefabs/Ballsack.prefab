@@ -173,7 +173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerControllerReference: {fileID: 0}
-  speed: 2
+  speed: 10
   player: {fileID: 2811793621894694109}
   manager: {fileID: 0}
 --- !u!1 &5541916761936810816

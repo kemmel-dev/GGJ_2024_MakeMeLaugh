@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class ApesHaveBallsacksManager : MonoBehaviour
 {
@@ -16,24 +17,22 @@ public class ApesHaveBallsacksManager : MonoBehaviour
     [SerializeField]
     private float startTime = 10;
     public Transform playerArea;
-    private int playerscore = 0;
 
     public UnityEvent m_MyEvent;
     Vector2 screenBounds;
     private float timeRemaining;
     private bool Finished = false;
 
- 
+    public int CountDownTime = 5;
+    public int GameTime = 30;
+    private MiniGameController miniGameController;
 
-    //Todo fix instaiate
-    /*private void Awake()
-    {
-        Instantiate(Ape, startPosApe);
-        Instantiate(Ballsack, startPosBallsack);
-    }*/
+    List<BallsackMovement> ballsackMovements = new List<BallsackMovement>();
 
+    
 
-    // Start is called before the first frame update
+ /*   public TextMeshProUGUI TimerText;*/
+
     void Start()
     {
         timeRemaining = startTime;
@@ -48,6 +47,11 @@ public class ApesHaveBallsacksManager : MonoBehaviour
             m_MyEvent = new UnityEvent();
 
         m_MyEvent.AddListener(RespawnApe);
+
+        foreach(BallsackMovement ballsackMovement in FindObjectsOfType<BallsackMovement>())
+        {
+            ballsackMovements.Add(ballsackMovement);
+        }
     }
 
     public void RespawnApe()
@@ -62,24 +66,34 @@ public class ApesHaveBallsacksManager : MonoBehaviour
          } while{distance < minDistance}*/
         Vector3 newPos = new Vector3(Random.Range(0 - playerArea.transform.localScale.x /2, 0 + playerArea.transform.localScale.x / 2), Random.Range(0 - playerArea.transform.localScale.y / 2, 0 + playerArea.transform.localScale.y / 2), 1);
         Ape.position = newPos;
-        playerscore += 1;
     }
 
     private void Update()
     {
-        if (timeRemaining > 0)
+        if(timeRemaining > 0)
         {
             timeRemaining -= Time.deltaTime;
         }
 
-        if (timeRemaining< 0 && !Finished)
+        if (timeRemaining < 0)
         {
-            Finished = true;
+            Debug.Log("print");
+            GameManager.Instance.DeactivateInput();
+            Dictionary<PlayerController, int> playerScores = new();
+            foreach (BallsackMovement ballsack in ballsackMovements)
+            {
+                playerScores.Add(ballsack.PlayerControllerReference, ballsack.score);
+            }
+            GameManager.Instance.SetScorePerPlayer(playerScores);
+            SceneManager.LoadScene("ThroneRoom");
         }
     }
+
+
 
     private void OnDestroy()
     {
         m_MyEvent.RemoveListener(RespawnApe);
     }
 }
+
