@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class PigBehaviour : MonoBehaviour
 {
+	public int Points = 1;
 	private void OnTriggerEnter2D(Collider2D other)
 	{
 		if (other.TryGetComponent<SampleMiniGamePlayerController>(out var playerController))
 		{
-			Debug.Log($"collect");
 			playerController.GrabbablePigs.Add(this);
 		}
 	}
@@ -14,14 +14,12 @@ public class PigBehaviour : MonoBehaviour
 	{
 		if (other.TryGetComponent<SampleMiniGamePlayerController>(out var playerController))
 		{
-			Debug.Log($"collect");
 			playerController.GrabbablePigs.Remove(this);
 		}
 	}
 
 	public void Collect()
 	{
-		Debug.Log($"collect");
-		Destroy(GetComponent<Collider>());
+		Destroy(GetComponent<BoxCollider2D>());
 	}
 }
