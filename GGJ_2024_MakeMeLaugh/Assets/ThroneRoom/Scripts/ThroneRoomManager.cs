@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 
 namespace ThroneRoom.Scripts
@@ -17,14 +18,17 @@ namespace ThroneRoom.Scripts
 
         public void Start()
         {
+            GameManager.Instance.Players[2].PlayerData.points = 13;
+            GameManager.Instance.Players[2].PlayerData.pointsThisRound = 3;
+            
             _thrones.ForEach(throne => throne.Arranger.Arrange(numSteps));
             StartThroneSequence();
         }
 
         public async void StartThroneSequence()
         {
-            var tasks = new List<Task>();
 
+            //TODO player points
             // Load all player score data
             foreach (var playerController in GameManager.Instance.Players)
             {
@@ -34,6 +38,7 @@ namespace ThroneRoom.Scripts
             // Wait before advancing
             await Task.Delay(delayBeforeStartingMilliseconds);
             
+            var tasks = new List<Task>();
             // Load all player score data
             foreach (var playerController in GameManager.Instance.Players)
             {
@@ -45,12 +50,17 @@ namespace ThroneRoom.Scripts
             
             // Additional delay
             await Task.Delay(delayBeforeSceneSwitchMilliSeconds);
-            LoadNewMinigame();
-        }
 
-        private void LoadNewMinigame()
-        {
-            Debug.LogWarning("Load minigame here!");
+
+            //TODO player points
+            if (GameManager.Instance.Players.Any(player => player.PlayerData.points >= 15))
+            {
+                SceneManager.LoadScene("WinScene");
+            }
+            else
+            {
+                MiniGamePicker.PickMiniGame();
+            }
         }
 
         private void SetPlayerToPoint(int playerNum, int points)
@@ -67,8 +77,13 @@ namespace ThroneRoom.Scripts
             // Take number of steps
             for (int i = 0; i < amountOfSteps; i++)
             {
+                if (_thrones[playerNum].Score.IncrementScore(1))
+                {
+                    // Player won!
+                    await Task.Delay(1500);
+                    continue;
+                }
                 await _throneRoomPlayers[playerNum].AdvanceStep();
-                _thrones[playerNum].Score.IncrementScore(1);
             }
         }
     }

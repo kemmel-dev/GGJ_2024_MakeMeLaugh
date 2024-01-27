@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using ThroneRoom.Scripts;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -16,10 +17,7 @@ public class WinScene : MonoBehaviour
 
     private void Start()
     {
-        // var winningPlayer = GameManager.Instance.Players.OrderByDescending(player => player.PlayerData.points).First();
-        var winningPlayer = GameManager.Instance.Players[1];
-        Debug.Log(winningPlayer.PlayerIndex);
-        Debug.Log(winningPlayer.PlayerData.color);
+        var winningPlayer = GameManager.Instance.Players.OrderByDescending(player => player.PlayerData.points).First();
         WinForPlayer(winningPlayer.PlayerIndex, winningPlayer.PlayerData.color);
     }
 
@@ -47,6 +45,7 @@ public class WinScene : MonoBehaviour
         GameManager.Instance.Players.ForEach(controller => Destroy(controller.gameObject));
         Destroy(GameManager.Instance.gameObject);
         GameManager.Instance = null;
+        MiniGamePicker.ClearHashSet();
         SceneManager.LoadScene("JoinScene");
     }
 }
