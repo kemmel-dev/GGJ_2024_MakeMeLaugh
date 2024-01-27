@@ -25,11 +25,10 @@ namespace ThroneRoom.Scripts
         public async void StartThroneSequence()
         {
 
-            //TODO player points
             // Load all player score data
             foreach (var playerController in GameManager.Instance.Players)
             {
-                SetPlayerToPoint(playerController.PlayerIndex, playerController.PlayerData.points);
+                SetPlayerToPoint(playerController.PlayerIndex, playerController.PlayerData.points - playerController.PlayerData.pointsThisRound);
             }
             
             // Wait before advancing
@@ -49,7 +48,6 @@ namespace ThroneRoom.Scripts
             await Task.Delay(delayBeforeSceneSwitchMilliSeconds);
 
 
-            //TODO player points
             if (GameManager.Instance.Players.Any(player => player.PlayerData.points >= 15))
             {
                 SceneManager.LoadScene("WinScene");
