@@ -96,12 +96,15 @@ public class TomatoJusticePlayerController : MiniGamePlayerController
 
         scoreText.text = score.ToString();
         Debug.Log("Score: " + score); // Replace with actual UI update
+
+      
     }
 
     public void DecreaseScore(int amount)
     {
         score -= amount;
         scoreText.text = score.ToString();
+
         Debug.Log("Score: " + score); // Replace with actual UI update
     }
 

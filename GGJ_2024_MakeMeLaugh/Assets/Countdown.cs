@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using System.Collections.Generic;
 
 public class CountdownTimer : MonoBehaviour
 {
@@ -39,7 +40,19 @@ public class CountdownTimer : MonoBehaviour
 
     private void GameOver()
     {
+
         // Perform game over actions here, such as stopping gameplay or showing a game over screen.
+        /*
+
+        Dictionary<PlayerController, int> playerScores = new();
+        foreach (var player in GameManager.Instance.Players)
+        {
+            playerScores.Add(player, ((this)PlayerObjects[player.PlayerIndex]).Score);
+        }
+
+
+        GameManager.Instance.SetScorePerPlayer(playerScores);
+        */
         Debug.Log("Game Over!");
         Time.timeScale = 0f; // Pause the game (set timeScale to 0 to stop time)
     }
