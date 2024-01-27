@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PigMiniGameController : MiniGameController
 {
@@ -9,7 +10,6 @@ public class PigMiniGameController : MiniGameController
 	public int GameTime = 30;
 	public TextMeshProUGUI TimerText;
 	public List<TextMeshProUGUI> PlayerScoreTexts;
-
 
 	private void Awake()
 	{
@@ -56,6 +56,8 @@ public class PigMiniGameController : MiniGameController
 			playerScores.Add(player, ((PigMiniGamePlayerController)PlayerObjects[player.PlayerIndex]).Score);
 		}
 		GameManager.Instance.SetScorePerPlayer(playerScores);
+
+		SceneManager.LoadScene("ThroneRoom");
 	}
 
 	private void OnDestroy()

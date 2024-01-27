@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class CountdownTimer : MonoBehaviour
 {
@@ -55,8 +56,7 @@ public class CountdownTimer : MonoBehaviour
 
         GameManager.Instance.SetScorePerPlayer(playerScores);
         
-        Debug.Log("Game Over!");
-        Time.timeScale = 0f; // Pause the game (set timeScale to 0 to stop time)
         GameManager.Instance.DeactivateInput();
+        SceneManager.LoadScene("ThroneRoom");
     }
 }

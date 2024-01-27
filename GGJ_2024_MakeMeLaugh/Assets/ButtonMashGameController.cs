@@ -2,24 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 using UnityEngine.TextCore.Text;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class ButtonMashGameController : MonoBehaviour
 {
     public MiniGameController miniGameController;
     public List<ButtonMashController> buttonMashPlayers = new List<ButtonMashController>();
     public TextMeshProUGUI buttonMashTestCounterUGUI;
+    public TextMeshProUGUI countdownUi;
     public int countdownAmount;
-    public int buttonMashTimerAmount; 
-    
+    public int buttonMashTimerAmount;
+
 
     private void Start()
     {
         miniGameController = FindObjectOfType<MiniGameController>();
 
+        foreach (var buttonMashPlayer in FindObjectsOfType<ButtonMashController>())
+        {
+            buttonMashPlayers.Add(buttonMashPlayer);
+        }
+
         StartCoroutine(CountdownForStartTimer(countdownAmount));
-        StartCoroutine(ButtonMeshTimer(buttonMashTimerAmount));
     }
 
     // Replace with Timer from GameController when available
@@ -29,11 +38,19 @@ public class ButtonMashGameController : MonoBehaviour
         while (timer > 0)
         {
             Debug.Log(timer);
+            countdownUi.text = timer.ToString();
             yield return new WaitForSeconds(1);
             timer--;
         }
 
-        SelectWinner();
+        countdownUi.text = "Go!";
+
+        /*ToggleCanMash();*/
+        GameManager.Instance.ActivateInput();
+        StartCoroutine(ButtonMeshTimer(buttonMashTimerAmount));
+
+        yield return new WaitForSeconds(0.5f);
+        countdownUi.gameObject.SetActive(false);
     }
 
     public IEnumerator ButtonMeshTimer(int buttonMashTimerAmount)
@@ -52,10 +69,32 @@ public class ButtonMashGameController : MonoBehaviour
     public void SelectWinner()
     {
         // Code that checks which player has the most button mashes
-        buttonMashPlayers = buttonMashPlayers.OrderByDescending(player => player.amountOfButtonMashes).ToList();
+        //ToggleCanMash();
+        GameManager.Instance.DeactivateInput();
 
-        buttonMashTestCounterUGUI.text = "Player " + buttonMashPlayers[0] + " Wins, with " + buttonMashPlayers[0].amountOfButtonMashes + " buttons mashes";
 
-        // Add logic for which player gets 3, 2, 1, and 0 points for this round and load scoreboard scene
+        buttonMashPlayers = buttonMashPlayers.OrderByDescending(player => player.GetComponent<ButtonMashController>().amountOfButtonMashes).ToList();
+
+        Dictionary<PlayerController, int> playerScores = new();
+        foreach (var player in GameManager.Instance.Players)
+        {
+            playerScores.Add(player, buttonMashPlayers[player.PlayerIndex].amountOfButtonMashes);
+        }
+        GameManager.Instance.SetScorePerPlayer(playerScores);
+
+        buttonMashTestCounterUGUI.text = "Player 1: " + buttonMashPlayers[0].PlayerControllerReference.PlayerData.pointsThisRound +
+                                        " Player 2: " + buttonMashPlayers[1].PlayerControllerReference.PlayerData.pointsThisRound +
+                                        " Player 3: " + buttonMashPlayers[2].PlayerControllerReference.PlayerData.pointsThisRound +
+                                        " Player 4: " + buttonMashPlayers[3].PlayerControllerReference.PlayerData.pointsThisRound;
+
+        // TODO Add logic for the fart visual
+        StartCoroutine(GoToScoreScene());
+    }
+
+    IEnumerator GoToScoreScene()
+    {
+        yield return new WaitForSeconds(3);
+        Debug.Log("ThroneRoom");
+        SceneManager.LoadScene("ThroneRoom");
     }
 }

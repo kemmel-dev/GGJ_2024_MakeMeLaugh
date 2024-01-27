@@ -106,7 +106,8 @@ public class GameManager : MonoBehaviour
 		{
 			foreach (var player in kvp.Value)
 			{
-				player.PlayerData.pointsThisRound += scoreToGive;
+				player.PlayerData.pointsThisRound = scoreToGive;
+				player.PlayerData.points += scoreToGive;
 			}
 
 			scoreToGive -= kvp.Value.Count;

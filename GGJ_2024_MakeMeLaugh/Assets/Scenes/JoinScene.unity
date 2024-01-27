@@ -177,6 +177,7 @@ MonoBehaviour:
   - {fileID: 433081133}
   - {fileID: 1358624461}
   - {fileID: 541026965}
+  firstSceneName: TomatoJustice
 --- !u!1 &433081132
 GameObject:
   m_ObjectHideFlags: 0

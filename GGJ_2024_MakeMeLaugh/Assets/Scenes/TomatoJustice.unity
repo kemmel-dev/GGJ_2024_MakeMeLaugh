@@ -412,6 +412,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 926870504}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &417581485 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 567404473081160680, guid: 2395b32c28d44a940bcde5d2aa3a9af1, type: 3}
+  m_PrefabInstance: {fileID: 1198740027}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5966b07185c1d547ab4ecc850bad183, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &483519898
 GameObject:
   m_ObjectHideFlags: 0
@@ -557,6 +568,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timerText: {fileID: 891735911}
   totalTime: 30
+  miniGameController: {fileID: 417581485}
 --- !u!114 &891735911
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1544,62 +1556,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be90fa1e791ed2c4f916fb1e7eac8ad6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cartoonMaterial: {fileID: 2100000, guid: 47bfedc5dc0538746a7ac153d94079c9, type: 2}
-  nebulaTexture: {fileID: 2800000, guid: f7663d6e43bb48249b0137da27083c49, type: 3}
-  effectText: {fileID: 0}
-  effects:
-  - Pixelation
-  - ChromaticAberration
-  - Vignette
-  - Bloom
-  - Noise
-  - Fog
-  - Desaturation
-  - Darkening
-  - Starfield
-  - WindLines
-  - ScanLine
-  - EdgeDetection
-  - Bloody
-  - Glitch
-  - Screenshake
-  - CannyEdge
-  - MotionBlur
-  - Ghosting
-  - DynamicFOV
-  - NebulaOverlay
-  activeEffects: []
-  lightEffects:
-  - Pixelation
-  - ChromaticAberration
-  - Vignette
-  - Bloom
-  - Noise
-  - Fog
-  - Desaturation
-  - Darkening
-  - Starfield
-  - WindLines
-  - EdgeDetection
-  - Bloody
-  - Screenshake
-  - Ghosting
-  - DynamicFOV
-  mediumEffects:
-  - CannyEdge
-  - ScanLine
-  - Glitch
-  - MotionBlur
-  hardEffect: NebulaOverlay
-  currentEffectIndex: 0
-  fadeStartTime: 0
-  currentEffect: 
-  appliedEffectCount: 0
-  applyEffectCalls: 0
-  remainingEffects: []
-  nebulaApplied: 0
-  edgeDetectionApplied: 0
-  cartoonEffect: {fileID: 1881310394}
 --- !u!1 &1882454303
 GameObject:
   m_ObjectHideFlags: 0
