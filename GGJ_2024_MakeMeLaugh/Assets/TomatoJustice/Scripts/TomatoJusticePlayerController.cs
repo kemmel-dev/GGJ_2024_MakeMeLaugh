@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 public class TomatoJusticePlayerController : MiniGamePlayerController
 {
     [SerializeField] private GameObject tomatoPrefab;
-    private static int score = 0;
+    public int score = 0;
     private PlayerController playerController;
     private List<TMP_Text> textScoreArray = new List<TMP_Text>();
     private TMP_Text scoreText;

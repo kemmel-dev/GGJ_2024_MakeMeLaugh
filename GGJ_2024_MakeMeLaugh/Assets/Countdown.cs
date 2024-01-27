@@ -8,7 +8,7 @@ public class CountdownTimer : MonoBehaviour
     public float totalTime = 30f; // Total time in seconds
     private float currentTime;
     private bool isTimerRunning = true;
-
+    public MiniGameController miniGameController;
     private void Start()
     {
         currentTime = totalTime;
@@ -42,17 +42,18 @@ public class CountdownTimer : MonoBehaviour
     {
 
         // Perform game over actions here, such as stopping gameplay or showing a game over screen.
-        /*
+        
 
+     
         Dictionary<PlayerController, int> playerScores = new();
-        foreach (var player in GameManager.Instance.Players)
+        foreach (MiniGamePlayerController player in miniGameController.PlayerObjects)
         {
-            playerScores.Add(player, ((this)PlayerObjects[player.PlayerIndex]).Score);
+            TomatoJusticePlayerController tomatoJusticePlayerController = player.GetComponent<TomatoJusticePlayerController>();
+            playerScores.Add(player.PlayerControllerReference, tomatoJusticePlayerController.score);
         }
 
-
         GameManager.Instance.SetScorePerPlayer(playerScores);
-        */
+        
         Debug.Log("Game Over!");
         Time.timeScale = 0f; // Pause the game (set timeScale to 0 to stop time)
     }
