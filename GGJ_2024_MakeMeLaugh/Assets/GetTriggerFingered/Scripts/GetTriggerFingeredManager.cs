@@ -4,50 +4,18 @@ using UnityEngine;
 
 public class GetTriggerFingeredManager : MonoBehaviour
 {
-    public List<GTFPlayerBehaviour> players = new List<GTFPlayerBehaviour>();
-    public List<GTFPlayerBehaviour> scores = new List<GTFPlayerBehaviour>();
-
-    private void Start()
+    Dictionary<PlayerController, int> scores = new();
+    public void AddScore(PlayerController player)
     {
-        //StartCoroutine(LateStart(0.5f));
+        scores.Add(player, scores.Count);
     }
-    public void AddScore(GameObject player)
+
+    private void Update()
     {
-        scores.Add(player.GetComponent<GTFPlayerBehaviour>());
-        if (scores.Count == 4)
+        if(scores.Count == 4)
         {
-            CalcScore();
+            GameManager.Instance.SetScorePerPlayer(scores);
         }
     }
-    private void SelectWinner()
-    {
-        GameManager gm = FindObjectOfType<GameManager>();
-        for (int i = 0; i < scores.Count; i++)
-        {
 
-        }
-        //gm.Players[0].PlayerData.pointsThisRound = 3; //winner gets 3 points
-        //gm.Players[1].PlayerData.pointsThisRound = 2; //second gets 2 points
-        //gm.Players[1].PlayerData.pointsThisRound = 1; //third gets 1 point
-        //gm.Players[1].PlayerData.pointsThisRound = 0; //fourth gets 0 points
-
-    }
-    //IEnumerator LateStart(float waitTime)
-    //{
-    //    yield return new WaitForSeconds(waitTime);
-    //    for (int i = 0; i < 4; i++)
-    //    {
-    //        var thing = FindObjectsOfType<GTFPlayerBehaviour>();
-    //        players[i] = thing[i];
-    //    }
-    //}
-
-    public void CalcScore()
-    {
-        scores.Reverse();
-        for (int i = 0; i < scores.Count; i++)
-        {
-            Debug.Log(scores[i]);
-        }
-    }
 }

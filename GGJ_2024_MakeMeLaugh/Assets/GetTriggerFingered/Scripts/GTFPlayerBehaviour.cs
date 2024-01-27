@@ -45,7 +45,7 @@ public class GTFPlayerBehaviour : MiniGamePlayerController
     {
         spawner.SetActive(false);
         //Destroy(spawner);
-        mgManager.GetComponent<GetTriggerFingeredManager>().AddScore(gameObject);
+        mgManager.GetComponent<GetTriggerFingeredManager>().AddScore(PlayerControllerReference);
         //Destroy(gameObject);
         gameObject.SetActive(false);
     }

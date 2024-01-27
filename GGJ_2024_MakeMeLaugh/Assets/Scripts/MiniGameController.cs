@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class MiniGameController : MonoBehaviour
 {
-	public List<SampleMiniGamePlayerController> PlayerObjects = new();
-	public SampleMiniGamePlayerController MiniGamePrefab;
+	public List<MiniGamePlayerController> PlayerObjects = new();
+	public MiniGamePlayerController MiniGamePrefab;
 	public List<Transform> SpawnPoints = new List<Transform>();
 
 	public event Action MiniGameSetupFinished;
@@ -23,7 +23,7 @@ public class MiniGameController : MonoBehaviour
 		for (var i = 0; i < GameManager.Instance.Players.Count; i++)
 		{
 			PlayerController playerController = GameManager.Instance.Players[i];
-			SampleMiniGamePlayerController miniGamePlayerController = Instantiate(MiniGamePrefab, SpawnPoints[i].position, SpawnPoints[i].localRotation);
+			MiniGamePlayerController miniGamePlayerController = Instantiate(MiniGamePrefab, SpawnPoints[i].position, SpawnPoints[i].localRotation);
 			miniGamePlayerController.Initialize(playerController);
 			PlayerObjects.Add(miniGamePlayerController);
 		}

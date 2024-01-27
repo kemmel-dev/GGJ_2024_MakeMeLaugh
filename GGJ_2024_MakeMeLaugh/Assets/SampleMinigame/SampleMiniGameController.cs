@@ -28,7 +28,7 @@ public class SampleMiniGameController : MiniGameController
 		foreach (var player in GameManager.Instance.Players)
 		{
 
-			PlayerScoreTexts[player.PlayerIndex].text = $"Player {player.PlayerIndex + 1}: {PlayerObjects[player.PlayerIndex].Score}";
+			//PlayerScoreTexts[player.PlayerIndex].text = $"Player {player.PlayerIndex + 1}: {PlayerObjects[player.PlayerIndex].Score}";
 		}
 	}
 
@@ -53,7 +53,7 @@ public class SampleMiniGameController : MiniGameController
 		Dictionary<PlayerController, int> playerScores = new();
 		foreach (var player in GameManager.Instance.Players)
 		{
-			playerScores.Add(player, PlayerObjects[player.PlayerIndex].Score);
+			//playerScores.Add(player, PlayerObjects[player.PlayerIndex].Score);
 		}
 		GameManager.Instance.SetScorePerPlayer(playerScores);
 	}
