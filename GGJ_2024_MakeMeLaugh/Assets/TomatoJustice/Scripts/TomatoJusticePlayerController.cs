@@ -12,13 +12,13 @@ public class TomatoJusticePlayerController : MiniGamePlayerController
     [SerializeField]
     private AudioSource[] audioSources;
     private TMP_Text scoreText;
-
+    private string color;
     public override void Initialize(PlayerController playerController)
     {
         base.Initialize(playerController);
         // Assuming PlayerController is attached to the same GameObject
        
-
+       
         if (playerController != null)
         {
             playerController.SouthButton += OnSouthButtonPressed;
@@ -34,6 +34,8 @@ public class TomatoJusticePlayerController : MiniGamePlayerController
     private void Start()
     {
         getPlayerScoreTextMesh();
+        color = PlayerControllerReference.PlayerData.color.ToString();
+        Debug.Log("color ===" + color);
     }
     private void getPlayerScoreTextMesh()
     {
