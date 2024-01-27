@@ -19,12 +19,14 @@ public class GTFPlayerBehaviour : MiniGamePlayerController
     }
     void Start()
     {
+        GameManager.Instance.ActivateInput();
         body.transform.position = leftPoint.transform.position;
         mgManager = GameObject.FindObjectOfType<GetTriggerFingeredManager>();
     }
 
     public void MoveLeft()
     {
+
         if (body.transform.position != leftPoint.transform.position)
         {
             body.transform.position = leftPoint.transform.position;
@@ -52,12 +54,20 @@ public class GTFPlayerBehaviour : MiniGamePlayerController
 
     private void PlayerControllerOnLeftTrigger(InputAction.CallbackContext ctx)
     {
-        MoveLeft();
+        if (ctx.performed)
+        {
+            MoveLeft();
+        }
+        
     }
 
     private void PlayerControllerOnRightTrigger(InputAction.CallbackContext ctx)
     {
-        MoveRight();
+        if (ctx.performed)
+        {
+            MoveRight();
+        }
+        
     }
 
     private void OnDestroy()

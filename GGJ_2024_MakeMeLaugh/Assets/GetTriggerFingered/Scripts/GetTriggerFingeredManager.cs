@@ -8,10 +8,6 @@ public class GetTriggerFingeredManager : MonoBehaviour
     public void AddScore(PlayerController player)
     {
         scores.Add(player, scores.Count);
-    }
-
-    private void Update()
-    {
         if(scores.Count == 4)
         {
             GameManager.Instance.SetScorePerPlayer(scores);
