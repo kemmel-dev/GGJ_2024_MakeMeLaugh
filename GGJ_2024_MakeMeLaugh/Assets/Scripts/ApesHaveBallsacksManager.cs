@@ -35,6 +35,7 @@ public class ApesHaveBallsacksManager : MonoBehaviour
 
     void Start()
     {
+        GameManager.Instance.ActivateInput();
         timeRemaining = startTime;
         Camera mainCamera = Camera.main;
         Vector2 screenBounds = mainCamera.ScreenToWorldPoint(new Vector3(Screen.width *1.5f, Screen.height *1.5f, 1));
