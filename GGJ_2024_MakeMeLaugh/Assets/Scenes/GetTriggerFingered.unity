@@ -269,7 +269,8 @@ MonoBehaviour:
   rightPoint: {fileID: 250000526}
   ball: {fileID: 5985776626272995092, guid: 5a322fe307b4924479e633a7d1ad45b2, type: 3}
   maxBallSpeed: 40
-  acceleration: 1.08
+  acceleration: 1.13
+  minWaitTime: 1.5
 --- !u!1 &361354087
 GameObject:
   m_ObjectHideFlags: 0
@@ -629,7 +630,8 @@ MonoBehaviour:
   rightPoint: {fileID: 1131452005}
   ball: {fileID: 5985776626272995092, guid: 5a322fe307b4924479e633a7d1ad45b2, type: 3}
   maxBallSpeed: 40
-  acceleration: 1.08
+  acceleration: 1.13
+  minWaitTime: 1.5
 --- !u!1 &586915906
 GameObject:
   m_ObjectHideFlags: 0
@@ -702,7 +704,7 @@ GameObject:
   m_Component:
   - component: {fileID: 624974558}
   m_Layer: 0
-  m_Name: Player (2)
+  m_Name: PlayerThree
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -869,7 +871,8 @@ MonoBehaviour:
   rightPoint: {fileID: 1159083049}
   ball: {fileID: 5985776626272995092, guid: 5a322fe307b4924479e633a7d1ad45b2, type: 3}
   maxBallSpeed: 40
-  acceleration: 1.08
+  acceleration: 1.13
+  minWaitTime: 1.5
 --- !u!1 &846018853
 GameObject:
   m_ObjectHideFlags: 0
@@ -1462,7 +1465,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1533839101}
   m_Layer: 0
-  m_Name: Player
+  m_Name: PlayerOne
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1496,7 +1499,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1586697586}
   m_Layer: 0
-  m_Name: Player (3)
+  m_Name: PlayerFour
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1759,7 +1762,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1794288083}
   m_Layer: 0
-  m_Name: Player (1)
+  m_Name: PlayerTwo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1834,7 +1837,8 @@ MonoBehaviour:
   rightPoint: {fileID: 1368273882}
   ball: {fileID: 5985776626272995092, guid: 5a322fe307b4924479e633a7d1ad45b2, type: 3}
   maxBallSpeed: 40
-  acceleration: 1.08
+  acceleration: 1.13
+  minWaitTime: 1.5
 --- !u!1 &1903625809
 GameObject:
   m_ObjectHideFlags: 0
