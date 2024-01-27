@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class SampleMiniGamePlayerController : MiniGamePlayerController
+public class PigMiniGamePlayerController : MiniGamePlayerController
 {
 	public int Score = 0;
 	private Vector2 _LeftStickInput;
@@ -89,6 +89,7 @@ public class SampleMiniGamePlayerController : MiniGamePlayerController
 		Score += CurrentPig.Points;
 		Destroy(CurrentPig.gameObject);
 		CurrentPig = null;
+		PigSpawner.Instance.RemovePig();
 	}
 
 	private void Start()
