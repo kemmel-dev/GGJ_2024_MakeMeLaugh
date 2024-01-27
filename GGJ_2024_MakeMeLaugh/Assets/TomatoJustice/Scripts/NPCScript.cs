@@ -15,7 +15,7 @@ public class NPCScript : MonoBehaviour
         // Destroy if off-screen
         if (!GetComponent<Renderer>().isVisible)
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
     }
 

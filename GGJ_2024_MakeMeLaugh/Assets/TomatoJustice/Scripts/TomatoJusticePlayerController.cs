@@ -9,7 +9,8 @@ public class TomatoJusticePlayerController : MiniGamePlayerController
     [SerializeField] private GameObject tomatoPrefab;
     public int score = 0;
     private PlayerController playerController;
-    private List<TMP_Text> textScoreArray = new List<TMP_Text>();
+    [SerializeField]
+    private AudioSource[] audioSources;
     private TMP_Text scoreText;
 
     public override void Initialize(PlayerController playerController)
@@ -27,7 +28,7 @@ public class TomatoJusticePlayerController : MiniGamePlayerController
             Debug.Log(" testnull!");
         }
 
-    
+       audioSources = this.GetComponents<AudioSource>();
     }
 
     private void Start()
@@ -92,27 +93,29 @@ public class TomatoJusticePlayerController : MiniGamePlayerController
 
     public void IncreaseScore(int amount)
     {
+        audioSources[0].Play();
         score += amount;
 
         scoreText.text = score.ToString();
-        Debug.Log("Score: " + score); // Replace with actual UI update
+        Debug.Log("Scoreplus: " + score); // Replace with actual UI update
 
       
     }
 
+    //
     public void DecreaseScore(int amount)
     {
         score -= amount;
         scoreText.text = score.ToString();
-
-        Debug.Log("Score: " + score); // Replace with actual UI update
+        audioSources[1].Play();
+        Debug.Log("Scoreminus: " + score); // Replace with actual UI update
     }
 
     private void OnDestroy()
     {
         // Unsubscribe to avoid memory leaks
       
-            playerController.SouthButton -= OnSouthButtonPressed;
+            PlayerControllerReference.SouthButton -= OnSouthButtonPressed;
       
     }
 }

@@ -3,7 +3,7 @@ using UnityEngine;
 public class BasketBehaviour : MonoBehaviour
 {
 	public int playerIndex = -1;
-	private void OnTriggerEnter2D(Collider2D other)
+	private void OnTriggerEnter(Collider other)
 	{
 		if (other.transform.root.TryGetComponent<PigMiniGamePlayerController>(out var playerController)
 			&& playerController.HasPig
