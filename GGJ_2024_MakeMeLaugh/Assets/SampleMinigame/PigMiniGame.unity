@@ -1271,6 +1271,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2358840460082478522, guid: 15330e0421b7ecc4d9029867badff8d6, type: 3}
+      propertyPath: XRange
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2358840460082478522, guid: 15330e0421b7ecc4d9029867badff8d6, type: 3}
+      propertyPath: YRange
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2358840460082478522, guid: 15330e0421b7ecc4d9029867badff8d6, type: 3}
+      propertyPath: SpawnDelay
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2358840460082478522, guid: 15330e0421b7ecc4d9029867badff8d6, type: 3}
+      propertyPath: MaxPigAmount
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4167496106340878911, guid: 15330e0421b7ecc4d9029867badff8d6, type: 3}
       propertyPath: TimerText
       value: 
