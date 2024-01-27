@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/SampleMinigame/SampleMiniGame.unity
     guid: 5721415374f4cd94881d3c4817b41cca
+  - enabled: 1
+    path: Assets/Scenes/TomatoJustice.unity
+    guid: e78f314b4825aeb489f1cae0145e0087
   m_configObjects: {}

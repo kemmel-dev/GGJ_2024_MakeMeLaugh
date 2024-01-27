@@ -24,7 +24,7 @@ public class NPCScript : MonoBehaviour
         if (other.gameObject.CompareTag("ProjectileTomJustice"))
         {
             // Increase player score
-            PlayerScript.IncreaseScore(1); // Static method in PlayerScript to increase score
+           // PlayerScript.IncreaseScore(1); // Static method in PlayerScript to increase score
             Destroy(other.gameObject); // Destroy the tomato
             Destroy(gameObject); // Destroy the NPC
         }
