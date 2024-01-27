@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
 
 	public void OnPlayerLeftStick(InputAction.CallbackContext ctx)
 	{
+		Debug.Log("tets");
 		LeftStick?.Invoke(ctx);
 	}
 	public void OnPlayerNorthButton(InputAction.CallbackContext ctx)

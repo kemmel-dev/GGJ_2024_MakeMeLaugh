@@ -4,13 +4,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class BallsackMovement : MonoBehaviour
+public class BallsackMovement : MiniGamePlayerController
 {
     [SerializeField]
     private int speed = 10;
     public Transform player;
     public ApesHaveBallsacksManager manager;
     private bool inBallsackArea = false;
+    private Vector2 _LeftStickInput;
+    private Rigidbody2D rigidbody;
+
+
+    public override void Initialize(PlayerController playerController)
+    {
+        base.Initialize(playerController);
+        playerController.LeftStick += PlayerControllerOnLeftStick;
+        playerController.SouthButton += PlayerControllerOnSouthButton;
+
+        manager = FindAnyObjectByType<ApesHaveBallsacksManager>().GetComponent<ApesHaveBallsacksManager>();
+        rigidbody =  GetComponent<Rigidbody2D>();
+        Debug.Log(rigidbody.gameObject.name);
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -30,25 +44,38 @@ public class BallsackMovement : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
+ 
+    private void PlayerControllerOnLeftStick(InputAction.CallbackContext ctx)
     {
-        Move();
-
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (ctx.started || ctx.performed)
         {
-            if (inBallsackArea)
-            {
-                manager.m_MyEvent.Invoke();
-            }
+            _LeftStickInput = ctx.ReadValue<Vector2>();
+        }
+
+        if (ctx.canceled)
+        {
+            _LeftStickInput = Vector2.zero;
         }
     }
 
-    public void Move()
+    private void PlayerControllerOnSouthButton(InputAction.CallbackContext ctx)
     {
+        if (!ctx.performed) return;
+        if (inBallsackArea)
+        {
+            manager.m_MyEvent.Invoke();
+        }
+    }
 
-        Vector3 Movement = new Vector3(Input.GetAxis("Horizontal"),  Input.GetAxis("Vertical"), 0);
+    void Update()
+    {
+        Debug.Log(_LeftStickInput.x);
+        rigidbody.velocity = _LeftStickInput * speed;
+    }
 
-        player.transform.position += Movement * speed * Time.deltaTime;
+    private void OnDestroy()
+    {
+        PlayerControllerReference.LeftStick -= PlayerControllerOnLeftStick;
+        PlayerControllerReference.SouthButton -= PlayerControllerOnSouthButton;
     }
 }
