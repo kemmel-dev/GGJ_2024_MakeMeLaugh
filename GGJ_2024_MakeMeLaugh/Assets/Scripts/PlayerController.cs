@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
 
 	public event Action<InputAction.CallbackContext> RightTrigger;
 	public event Action<InputAction.CallbackContext> LeftTrigger;
+	public event Action ReadyAction;
 	public int PlayerIndex => GetComponent<PlayerInput>().playerIndex;
 
 	private void Awake()
@@ -55,6 +56,11 @@ public class PlayerController : MonoBehaviour
 	}
 	public void OnPlayerReady(InputAction.CallbackContext ctx)
 	{
-		PlayerData.ready = true;
+		if (!ctx.performed) return;
+		ReadyAction?.Invoke();
+	}
+	public void OnPlayerReady()
+	{
+		ReadyAction?.Invoke();
 	}
 }
