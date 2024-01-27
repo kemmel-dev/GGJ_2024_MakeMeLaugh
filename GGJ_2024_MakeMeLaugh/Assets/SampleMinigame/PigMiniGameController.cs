@@ -20,6 +20,11 @@ public class PigMiniGameController : MiniGameController
 	private void OnMiniGameSetupFinished()
 	{
 		StartCoroutine(CountDown());
+		if (GameManager.Instance == null) return;
+		foreach (var player in GameManager.Instance.Players)
+		{
+			PlayerScoreTexts[player.PlayerIndex].color = player.PlayerData.color;
+		}
 	}
 
 	private void Update()
@@ -27,7 +32,6 @@ public class PigMiniGameController : MiniGameController
 		if (GameManager.Instance == null) return;
 		foreach (var player in GameManager.Instance.Players)
 		{
-
 			PlayerScoreTexts[player.PlayerIndex].text = $"Player {player.PlayerIndex + 1}: {((PigMiniGamePlayerController)PlayerObjects[player.PlayerIndex]).Score}";
 		}
 	}

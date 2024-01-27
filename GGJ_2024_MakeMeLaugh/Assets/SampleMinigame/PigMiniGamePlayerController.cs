@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -26,17 +27,19 @@ public class PigMiniGamePlayerController : MiniGamePlayerController
 	public override void Initialize(PlayerController playerController)
 	{
 		base.Initialize(playerController);
-		transform.GetComponent<SpriteRenderer>().color = playerController.PlayerData.color;
+		//transform.GetComponent<SpriteRenderer>().color = playerController.PlayerData.color;
 		playerController.LeftStick += PlayerControllerOnLeftStick;
 		playerController.SouthButton += PlayerControllerOnSouthButton;
+
+		mainCamera = Camera.main;
+		screenBounds = mainCamera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, mainCamera.transform.position.z));
+
+		SetupJester();
 
 		Basket = Instantiate(BasketPrefab, Vector3.one * 1000, Quaternion.identity);
 		Basket.playerIndex = playerController.PlayerIndex;
 		Basket.GetComponent<SpriteRenderer>().color = playerController.PlayerData.color;
-		mainCamera = Camera.main;
-		screenBounds = mainCamera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, mainCamera.transform.position.z));
-		objectWidth = Basket.GetComponent<SpriteRenderer>().bounds.extents.x; // Extents = size of width / 2
-		objectHeight = Basket.GetComponent<SpriteRenderer>().bounds.extents.y; // Extents = size of height / 2
+
 
 		var basketWidth = Basket.GetComponent<SpriteRenderer>().bounds.extents.x; // Extents = size of width / 2
 		var basketHeight = Basket.GetComponent<SpriteRenderer>().bounds.extents.y; // Extents = size of height / 2
@@ -59,6 +62,17 @@ public class PigMiniGamePlayerController : MiniGamePlayerController
 				Basket.transform.position = new Vector3(screenBounds.x * -1 + basketWidth, screenBounds.y * -1 + basketHeight, 0);
 				break;
 		}
+	}
+
+	private void SetupJester()
+	{
+		var jester = Instantiate(PlayerControllerReference.PlayerData.playerModel, transform);
+		var coll = jester.GetComponentInChildren<MeshFilter>().AddComponent<BoxCollider2D>();
+		objectWidth = coll.bounds.size.x;
+		objectHeight = coll.bounds.size.y;
+		jester.transform.localPosition = Vector3.zero;
+		jester.transform.localScale = Vector3.one * 1.5f;
+		jester.transform.localRotation = Quaternion.Euler(0, 180, 0);
 	}
 
 	private void PlayerControllerOnLeftStick(InputAction.CallbackContext ctx)
@@ -95,9 +109,7 @@ public class PigMiniGamePlayerController : MiniGamePlayerController
 	private void Start()
 	{
 		_Rigidbody = GetComponent<Rigidbody2D>();
-
 	}
-
 	public void Update()
 	{
 		_Rigidbody.velocity = _LeftStickInput * PlayerSpeed;
