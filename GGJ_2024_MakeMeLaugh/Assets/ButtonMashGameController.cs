@@ -94,7 +94,7 @@ public class ButtonMashGameController : MonoBehaviour
     IEnumerator GoToScoreScene()
     {
         yield return new WaitForSeconds(3);
-        Debug.Log("Go To ScoreBoard Screen");
-        //SceneManager.LoadScene("ScoreBoard");
+        Debug.Log("ThroneRoom");
+        SceneManager.LoadScene("ThroneRoom");
     }
 }

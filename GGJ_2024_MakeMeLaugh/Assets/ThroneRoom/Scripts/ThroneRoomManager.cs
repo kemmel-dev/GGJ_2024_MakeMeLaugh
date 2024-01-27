@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 
 namespace ThroneRoom.Scripts
@@ -14,6 +15,8 @@ namespace ThroneRoom.Scripts
         [SerializeField] private List<ThroneRoomPlayer> _throneRoomPlayers;
         [SerializeField] private int delayBeforeStartingMilliseconds = 1000;
         [SerializeField] private int delayBeforeSceneSwitchMilliSeconds = 3000;
+        [SerializeField] private int minMinigameIndex;
+        [SerializeField] private int maxMinigameIndex;
 
         public void Start()
         {
@@ -28,7 +31,7 @@ namespace ThroneRoom.Scripts
             // Load all player score data
             foreach (var playerController in GameManager.Instance.Players)
             {
-                SetPlayerToPoint(playerController.PlayerIndex, playerController.PlayerData.points);
+                SetPlayerToPoint(playerController.PlayerIndex, playerController.PlayerData.points - playerController.PlayerData.pointsThisRound);
             }
             
             // Wait before advancing
@@ -50,6 +53,7 @@ namespace ThroneRoom.Scripts
 
         private void LoadNewMinigame()
         {
+            SceneManager.LoadScene(Random.Range(minMinigameIndex, maxMinigameIndex + 1));
             Debug.LogWarning("Load minigame here!");
         }
 

@@ -291,6 +291,8 @@ MonoBehaviour:
   - {fileID: 1735635200}
   delayBeforeStartingMilliseconds: 2500
   delayBeforeSceneSwitchMilliSeconds: 3000
+  minMinigameIndex: 2
+  maxMinigameIndex: 3
 --- !u!1 &303547721
 GameObject:
   m_ObjectHideFlags: 0
