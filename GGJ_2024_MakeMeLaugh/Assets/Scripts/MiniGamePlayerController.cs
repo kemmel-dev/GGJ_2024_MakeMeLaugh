@@ -2,7 +2,7 @@
 
 public abstract class MiniGamePlayerController : MonoBehaviour
 {
-	protected PlayerController PlayerControllerReference;
+	public PlayerController PlayerControllerReference;
 
 	public virtual void Initialize(PlayerController playerController)
 	{
