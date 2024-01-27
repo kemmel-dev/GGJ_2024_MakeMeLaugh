@@ -14,6 +14,10 @@ public class GTFPlayerBehaviour : MiniGamePlayerController
     public GameObject body;
     public int CountDownTime = 5;
     public AudioSource audioData;
+    public int amountDodged = 0;
+    public AudioClip clip;
+    [Range(0f, 1f)]
+    public float volume = 1f;
 
     public override void Initialize(PlayerController playerController)
     {
@@ -54,14 +58,19 @@ public class GTFPlayerBehaviour : MiniGamePlayerController
 
     public void Die()
     {
-
-        mgManager.PlaySound();
+        amountDodged--;
+        mgManager.PlayerScoreTexts[PlayerControllerReference.PlayerIndex].text = amountDodged.ToString();
+        mgManager.PlaySound(clip, volume);
         spawner.SetActive(false);
         mgManager.GetComponent<GetTriggerFingeredManager>().AddScore(PlayerControllerReference);
         gameObject.SetActive(false);
 
     }
-
+    public void Dodged()
+    {
+        amountDodged++;
+        mgManager.PlayerScoreTexts[PlayerControllerReference.PlayerIndex].text = amountDodged.ToString();
+    }
     private void PlayerControllerOnLeftTrigger(InputAction.CallbackContext ctx)
     {
         if (ctx.performed)

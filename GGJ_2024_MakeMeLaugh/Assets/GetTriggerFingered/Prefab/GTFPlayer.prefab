@@ -179,6 +179,10 @@ MonoBehaviour:
   maxBallSpeed: 40
   acceleration: 1.13
   minWaitTime: 1.5
+  player: {fileID: 8958049360079477109}
+  mgManager: {fileID: 0}
+  clip: {fileID: 8300000, guid: 1f28968bc017f2f4caf598d7f4cf3c73, type: 3}
+  volume: 0.5
 --- !u!1 &8369378153536567754
 GameObject:
   m_ObjectHideFlags: 0
@@ -286,7 +290,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: dcea51d6065d64246aeec467afeff684, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -429,6 +433,9 @@ MonoBehaviour:
   body: {fileID: 8694135000562797327}
   CountDownTime: 5
   audioData: {fileID: 0}
+  amountDodged: 0
+  clip: {fileID: 8300000, guid: a3678a812fb40934b8b4db06a330fb0d, type: 3}
+  volume: 1
 --- !u!82 &2247269848689386337
 AudioSource:
   m_ObjectHideFlags: 0
