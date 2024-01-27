@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/SampleMinigame/SampleMiniGame.unity
     guid: 5721415374f4cd94881d3c4817b41cca
+  - enabled: 1
+    path: Assets/Scenes/FartyMcFartFace.unity
+    guid: b06f6e8754d8b98488e96505e4dd6413
   m_configObjects: {}
