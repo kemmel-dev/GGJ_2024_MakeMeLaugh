@@ -41,7 +41,7 @@ public class PigSpawner : MonoBehaviour
 		{
 			if (PigAmount < MaxPigAmount)
 			{
-				Instantiate(PigPrefab, Vector3.zero, Quaternion.identity);
+				Instantiate(PigPrefab, Vector3.zero + new Vector3(Random.Range(-XRange / 2f, XRange / 2f), Random.Range(-YRange / 2f, YRange / 2f)), Quaternion.identity);
 				PigAmount++;
 			}
 			yield return new WaitForSeconds(SpawnDelay);
