@@ -359,9 +359,6 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4424972072134431517, guid: 8d27d4a4c0dba8447a52d8458f34c273, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
     - targetCorrespondingSourceObject: {fileID: 9058979813992845489, guid: 8d27d4a4c0dba8447a52d8458f34c273, type: 3}
       insertIndex: -1
       addedObject: {fileID: 276741361}
@@ -409,7 +406,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 172697000418654982, guid: 07d55bb7cb911a8419e301d35590c185, type: 3}
       propertyPath: firstSceneName
-      value: PigMiniGame
+      value: GetTriggerFingered
       objectReference: {fileID: 0}
     - target: {fileID: 172697000418654982, guid: 07d55bb7cb911a8419e301d35590c185, type: 3}
       propertyPath: ReadyControllerPrefabs.Array.size
@@ -757,9 +754,6 @@ PrefabInstance:
     - {fileID: 8917268408595826446, guid: 736e7b66be445fb438e6d4b05e752d19, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4424972072134431517, guid: 736e7b66be445fb438e6d4b05e752d19, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
     - targetCorrespondingSourceObject: {fileID: 9058979813992845489, guid: 736e7b66be445fb438e6d4b05e752d19, type: 3}
       insertIndex: -1
       addedObject: {fileID: 621078565}
@@ -1453,9 +1447,6 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4424972072134431517, guid: 3c4f5c47c8c258642b007f52ff7b2ac0, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
     - targetCorrespondingSourceObject: {fileID: 9058979813992845489, guid: 3c4f5c47c8c258642b007f52ff7b2ac0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1892181764}
@@ -1733,9 +1724,6 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4424972072134431517, guid: f9f607a573292604ab5fcef517281c37, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
     - targetCorrespondingSourceObject: {fileID: 9058979813992845489, guid: f9f607a573292604ab5fcef517281c37, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1957233423}
