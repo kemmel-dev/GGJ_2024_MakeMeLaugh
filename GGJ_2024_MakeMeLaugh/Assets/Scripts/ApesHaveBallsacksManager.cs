@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -15,30 +16,26 @@ public class ApesHaveBallsacksManager : MonoBehaviour
     [SerializeField]
     private float minDistance = 10;
     [SerializeField]
-    private float startTime = 10;
+    private float startTime = 60;
     public Transform playerArea;
 
     public UnityEvent m_MyEvent;
-    Vector2 screenBounds;
+    private Vector2 screenBounds;
     private float timeRemaining;
     private bool Finished = false;
-
-    public int CountDownTime = 5;
-    public int GameTime = 30;
     private MiniGameController miniGameController;
+    public Canvas canvas;
+    public TextMeshProUGUI TimerText;
+    public List<TextMeshProUGUI> PlayerScoreTexts;
 
     List<BallsackMovement> ballsackMovements = new List<BallsackMovement>();
-
-    
-
- /*   public TextMeshProUGUI TimerText;*/
 
     void Start()
     {
         GameManager.Instance.ActivateInput();
         timeRemaining = startTime;
         Camera mainCamera = Camera.main;
-        Vector2 screenBounds = mainCamera.ScreenToWorldPoint(new Vector3(Screen.width *1.5f, Screen.height *1.5f, 1));
+        Vector2 screenBounds = mainCamera.ScreenToWorldPoint(new Vector3(Screen.width * 1.5f, Screen.height * 1.5f, 1));
 
         playerArea.localScale = new Vector3(screenBounds.x, screenBounds.y, 1);
 
@@ -49,9 +46,15 @@ public class ApesHaveBallsacksManager : MonoBehaviour
 
         m_MyEvent.AddListener(RespawnApe);
 
-        foreach(BallsackMovement ballsackMovement in FindObjectsOfType<BallsackMovement>())
+        foreach (BallsackMovement ballsackMovement in FindObjectsOfType<BallsackMovement>())
         {
             ballsackMovements.Add(ballsackMovement);
+            
+        }
+        ballsackMovements.Reverse();
+        foreach (var player in GameManager.Instance.Players)
+        {
+            PlayerScoreTexts[player.PlayerIndex].color = ballsackMovements[player.PlayerIndex].color;
         }
     }
 
@@ -65,20 +68,30 @@ public class ApesHaveBallsacksManager : MonoBehaviour
 
              if(distance > minDistance)
          } while{distance < minDistance}*/
-        Vector3 newPos = new Vector3(Random.Range(0 - playerArea.transform.localScale.x /2, 0 + playerArea.transform.localScale.x / 2), Random.Range(0 - playerArea.transform.localScale.y / 2, 0 + playerArea.transform.localScale.y / 2), 1);
+        Vector3 newPos = new Vector3(Random.Range(0 - (playerArea.transform.localScale.x / 2) + 3.5f , 0 + (playerArea.transform.localScale.x / 2) - 0.5f), Random.Range(0 - (playerArea.transform.localScale.y / 2) + 1.5f, 0 + (playerArea.transform.localScale.y / 2) - 1.5f), -1);
+        Debug.Log(0 - (playerArea.transform.localScale.x / 2) + 1);
+        Debug.Log(0 + (playerArea.transform.localScale.x / 2) - 1.5);
+        Debug.Log(0 - (playerArea.transform.localScale.y / 2) + 1);
+        Debug.Log(0 + (playerArea.transform.localScale.y / 2) - 1.5);
         Ape.position = newPos;
     }
 
     private void Update()
     {
-        if(timeRemaining > 0)
+        if (GameManager.Instance == null) return;
+        foreach (var player in GameManager.Instance.Players)
+        {
+            
+            PlayerScoreTexts[player.PlayerIndex].text = $"Player {player.PlayerIndex + 1}: {(ballsackMovements[player.PlayerIndex]).score}";
+        }
+        if (timeRemaining > 0)
         {
             timeRemaining -= Time.deltaTime;
+            TimerText.text = timeRemaining.ToString();
         }
 
         if (timeRemaining < 0)
         {
-            Debug.Log("print");
             GameManager.Instance.DeactivateInput();
             Dictionary<PlayerController, int> playerScores = new();
             foreach (BallsackMovement ballsack in ballsackMovements)
@@ -89,8 +102,6 @@ public class ApesHaveBallsacksManager : MonoBehaviour
             SceneManager.LoadScene("ThroneRoom");
         }
     }
-
-
 
     private void OnDestroy()
     {

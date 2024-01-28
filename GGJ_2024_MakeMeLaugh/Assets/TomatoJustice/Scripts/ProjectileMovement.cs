@@ -4,7 +4,8 @@ using UnityEngine.Rendering;
 
 public class ProjectileMovement : MonoBehaviour
 {
-    [SerializeField] private float speed = 5f;
+    [SerializeField] private float speed = 3f;
+    [SerializeField] private float speedSlow = 2f;
     private TomatoJusticePlayerController playerController;
     private bool goingUp = true;
     [SerializeField]
@@ -37,7 +38,7 @@ public class ProjectileMovement : MonoBehaviour
         }
         else if (!goingUp) 
         {
-            transform.Translate(Vector3.down * speed * Time.deltaTime);
+            transform.Translate(Vector3.down * speedSlow * Time.deltaTime);
             Debug.Log("goingDOWN");
         }
         // Destroy if off-screen

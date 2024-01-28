@@ -8,9 +8,11 @@ namespace ThroneRoom.Scripts
         private int _score = 0;
         [SerializeField] private TextMeshPro _textMeshPro;
 
-        public void IncrementScore(int amount)
+        public bool IncrementScore(int amount)
         {
-            _textMeshPro.text = (_score += amount).ToString();
+            _score += amount;
+            _textMeshPro.text = _score.ToString();
+            return _score > 15;
         }
 
         public void SetScore(int points)

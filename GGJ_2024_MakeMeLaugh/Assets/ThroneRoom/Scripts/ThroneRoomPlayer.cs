@@ -30,7 +30,7 @@ namespace ThroneRoom.Scripts
             PlayingAnimation = true;
             _animator.SetTrigger("Advance_Step");
 
-            while (PlayingAnimation == true)
+            while (PlayingAnimation)
             {
                 await Task.Yield();
             }

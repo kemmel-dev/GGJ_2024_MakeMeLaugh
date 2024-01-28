@@ -43,7 +43,8 @@ public class ButtonMashGameController : MonoBehaviour
         }
 
         countdownUi.text = "Go!";
-
+        var audio = GetComponent<AudioSource>();
+        audio.Play();
         /*ToggleCanMash();*/
         GameManager.Instance.ActivateInput();
         StartCoroutine(ButtonMeshTimer(buttonMashTimerAmount));
