@@ -12,8 +12,17 @@ public class MiniGamePreviewPanel : MonoBehaviour
     public Color _normalColor;
     public List<MiniGamePreview> miniGamePreviews;
 
+    private Transform child;
+    
+    private void Awake()
+    {
+        child = transform.GetChild(0);
+        child.gameObject.SetActive(false);
+    }
+
     public async void StartMiniGamePicker(int pickedMiniGame)//37
     {
+        child.gameObject.SetActive(true);
         var numMiniGame = pickedMiniGame - 3;//04
         var currentIndex = 0;
         var delay = 100;
@@ -26,8 +35,6 @@ public class MiniGamePreviewPanel : MonoBehaviour
                 if (i == 2 && (currentIndex % 5 ) == numMiniGame)
                 {
                     await Task.Delay(2000);
-                    // Switch to index of scene + 3 
-                    Debug.Log("here");
                     SceneManager.LoadScene(pickedMiniGame);
                     break;
                 }
