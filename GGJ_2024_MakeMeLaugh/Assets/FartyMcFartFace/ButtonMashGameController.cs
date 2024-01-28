@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 using UnityEngine.TextCore.Text;
-using static UnityEditor.Experimental.GraphView.GraphView;
+//using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class ButtonMashGameController : MonoBehaviour
 {
@@ -97,7 +97,7 @@ public class ButtonMashGameController : MonoBehaviour
 
     IEnumerator GoToScoreScene()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(8);
         SceneManager.LoadScene("ThroneRoom");
     }
 }
