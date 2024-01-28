@@ -54,7 +54,8 @@ namespace ThroneRoom.Scripts
             }
             else
             {
-                MiniGamePicker.PickMiniGame();
+                //TODO add UI scroller
+                SceneManager.LoadScene(MiniGamePicker.PickMiniGame());
             }
         }
 
@@ -79,7 +80,6 @@ namespace ThroneRoom.Scripts
                     continue;
                 }
                 await _throneRoomPlayers[playerNum].AdvanceStep();
-                _thrones[playerNum].Score.IncrementScore(1);
             }
         }
     }

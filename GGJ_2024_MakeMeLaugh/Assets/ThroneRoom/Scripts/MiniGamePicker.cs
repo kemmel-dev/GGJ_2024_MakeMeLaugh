@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
@@ -9,17 +10,16 @@ namespace ThroneRoom.Scripts
     {
         private static HashSet<int> _playedMiniGames = new ();
 
-        public static void PickMiniGame(string sceneName = null)
+        public static int PickMiniGame(string sceneName = null)
         {
             if (sceneName != null)
             {
-                SceneManager.LoadScene(sceneName);
-                return;
+                SceneManager.LoadScene(SceneManager.GetSceneByName(sceneName).buildIndex);
             }
             
             int pickedIndex;
 
-            if (_playedMiniGames.Count >= 6)
+            if (_playedMiniGames.Count >= 5)
             {
                 ClearHashSet();
             }
@@ -31,7 +31,8 @@ namespace ThroneRoom.Scripts
                 _playedMiniGames.Add(pickedIndex);
                 break;
             }
-            SceneManager.LoadScene(pickedIndex);
+
+            return pickedIndex;
         }
 
         public static void ClearHashSet()

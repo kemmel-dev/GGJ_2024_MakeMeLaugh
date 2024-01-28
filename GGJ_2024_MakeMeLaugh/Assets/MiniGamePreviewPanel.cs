@@ -12,13 +12,9 @@ public class MiniGamePreviewPanel : MonoBehaviour
     public Color _normalColor;
     public List<MiniGamePreview> miniGamePreviews;
 
-    private void Start()
+    public async void StartMiniGamePicker(int pickedMiniGame)//37
     {
-        StartMiniGamePicker(3);
-    }
-
-    public async void StartMiniGamePicker(int pickedMiniGame)
-    {
+        var numMiniGame = pickedMiniGame - 3;//04
         var currentIndex = 0;
         var delay = 100;
         for (int i = 0; i < 3; i++)
@@ -27,11 +23,12 @@ public class MiniGamePreviewPanel : MonoBehaviour
             {
                 miniGamePreviews[currentIndex % 5].highlight.color = _highlightColor;
                 miniGamePreviews[currentIndex - 1 < 0 ? 4 : (currentIndex - 1) % 5].highlight.color = _normalColor;
-                if (i == 2 && (currentIndex % 5 ) == pickedMiniGame)
+                if (i == 2 && (currentIndex % 5 ) == numMiniGame)
                 {
                     await Task.Delay(2000);
                     // Switch to index of scene + 3 
-                    SceneManager.LoadScene(currentIndex % 5 + 3);
+                    Debug.Log("here");
+                    SceneManager.LoadScene(pickedMiniGame);
                     break;
                 }
                 

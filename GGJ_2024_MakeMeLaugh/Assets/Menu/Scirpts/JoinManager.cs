@@ -11,6 +11,7 @@ public class JoinManager : MonoBehaviour
 
 	private List<PlayerInput> _Players = new List<PlayerInput>();
 
+	public MiniGamePreviewPanel PreviewPanel;
 	private void Start()
 	{
 		GameManager.Instance.PlayerJoined += OnPlayerJoin;
@@ -23,13 +24,16 @@ public class JoinManager : MonoBehaviour
 			.init(playerInput.GetComponent<PlayerController>());
 	}
 
+	private bool gamePicked;
 
 	private void Update()
 	{
-		if (_Players.Count >= 4 && _Players.All(x => x.GetComponent<PlayerData>().ready))
+		if (!gamePicked && _Players.Count >= 4 && _Players.All(x => x.GetComponent<PlayerData>().ready))
 		{
 			GameManager.Instance.PlayerIM.DisableJoining();
-			MiniGamePicker.PickMiniGame();
+			var pickedIndex = MiniGamePicker.PickMiniGame();
+			PreviewPanel.StartMiniGamePicker(pickedIndex);
+			gamePicked = true;
 		}
 	}
 
