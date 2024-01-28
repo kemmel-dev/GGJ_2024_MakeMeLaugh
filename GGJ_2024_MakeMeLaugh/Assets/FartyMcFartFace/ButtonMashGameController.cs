@@ -95,7 +95,7 @@ public class ButtonMashGameController : MonoBehaviour
 
 
 
-        //StartCoroutine(GoToScoreScene());
+        StartCoroutine(GoToScoreScene());
     }
 
     IEnumerator GoToScoreScene()

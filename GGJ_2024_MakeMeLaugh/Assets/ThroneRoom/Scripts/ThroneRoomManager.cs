@@ -15,6 +15,7 @@ namespace ThroneRoom.Scripts
         [SerializeField] private List<ThroneRoomPlayer> _throneRoomPlayers;
         [SerializeField] private int delayBeforeStartingMilliseconds = 1000;
         [SerializeField] private int delayBeforeSceneSwitchMilliSeconds = 3000;
+        [SerializeField] private MiniGamePreviewPanel _previewPanel;
 
         public void Start()
         {
@@ -54,7 +55,7 @@ namespace ThroneRoom.Scripts
             }
             else
             {
-                MiniGamePicker.PickMiniGame();
+                _previewPanel.StartMiniGamePicker(MiniGamePicker.PickMiniGame());
             }
         }
 
@@ -79,7 +80,6 @@ namespace ThroneRoom.Scripts
                     continue;
                 }
                 await _throneRoomPlayers[playerNum].AdvanceStep();
-                _thrones[playerNum].Score.IncrementScore(1);
             }
         }
     }
