@@ -16,6 +16,9 @@ public class TomatoJusticePlayerController : MiniGamePlayerController
     private string color;
     private float objectWidth;
     private float objectHeight;
+    private float timeSinceLastShot = 0.0f; // Timer to track time since the last shot
+    private const float shootingRate = 1.0f / 5.0f; // 5 shots per second
+
     public override void Initialize(PlayerController playerController)
     {
         base.Initialize(playerController);
@@ -82,16 +85,18 @@ public class TomatoJusticePlayerController : MiniGamePlayerController
 
     private void Update()
     {
-      
+        // Update the timer
+        timeSinceLastShot += Time.deltaTime;
     }
-
     private void OnSouthButtonPressed(InputAction.CallbackContext ctx)
     {
-        // Check if the controller button was pressed
-        if (!ctx.performed) return;
-        Debug.Log("shouldshoot ");
-        SpawnTomato();
-        
+        // Check if the controller button was pressed and enough time has passed since the last shot
+        if (ctx.performed && timeSinceLastShot >= shootingRate)
+        {
+            Debug.Log("shouldshoot ");
+            SpawnTomato();
+            timeSinceLastShot = 0.0f; // Reset the timer
+        }
     }
 
     void SpawnTomato()
