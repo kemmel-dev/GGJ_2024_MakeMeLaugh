@@ -31,14 +31,14 @@ public class BallsackMovement : MiniGamePlayerController
         objectWidth = GetComponent<Collider2D>().bounds.extents.x;
         objectHeight = GetComponent<Collider2D>().bounds.extents.y;
 
-        transform.GetComponent<SpriteRenderer>().color = playerController.PlayerData.color;
+       /* transform.GetComponent<SpriteRenderer>().color = playerController.PlayerData.color;
         SpriteRenderer[] spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
-        Debug.Log(spriteRenderers.Length);
-        foreach(SpriteRenderer spriteRenderer in spriteRenderers)
+        Debug.Log(spriteRenderers.Length);*/
+        /*foreach(SpriteRenderer spriteRenderer in spriteRenderers)
         {
             spriteRenderer.color = playerController.PlayerData.color;
             color = playerController.PlayerData.color;
-        }
+        }*/
 
         setupPlayer();
     }
@@ -51,14 +51,15 @@ public class BallsackMovement : MiniGamePlayerController
 
     public void setupPlayer()
     {
-        var ballsack = Instantiate(PlayerControllerReference.PlayerData.playerBallsackModel, transform.GetChild(0));
+        
+        var ballsack = Instantiate(PlayerControllerReference.PlayerData.playerBallsackModel, transform);
         /*var coll = jester.GetComponentInChildren<MeshFilter>().AddComponent<BoxCollider2D>();
         objectWidth = coll.bounds.size.x;
         objectHeight = coll.bounds.size.y;*/
-
-        ballsack.transform.localPosition = Vector3.zero;
-        ballsack.transform.localScale = Vector3.one * 1.5f;
-        ballsack.transform.localRotation = Quaternion.Euler(0, 180, 0);
+        ballsack.transform.position = manager.SpawnPoints[PlayerControllerReference.PlayerIndex].position;
+        color = PlayerControllerReference.PlayerData.color;
+       /* ballsack.transform.localScale = Vector3.one * 1.5f;*/
+        /*    ballsack.transform.localRotation = Quaternion.Euler(0, 180, 0);*/
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
