@@ -1,4 +1,3 @@
-using System.Linq;
 using UnityEngine;
 
 public class PigBehaviour : MonoBehaviour
@@ -6,6 +5,7 @@ public class PigBehaviour : MonoBehaviour
 	public int Points = 1;
 	public PigMiniGameController pigMiniGameController;
 	public BoxCollider ModelCollider;
+	public Rigidbody ModelRigidBody;
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.transform.root.TryGetComponent<PigMiniGamePlayerController>(out var playerController))
@@ -21,16 +21,22 @@ public class PigBehaviour : MonoBehaviour
 		}
 	}
 
-	public void Collect()
+	public void Collect(PlayerController pc)
 	{
-		foreach (var pigPlayerController in pigMiniGameController.PlayerObjects.Select(x => x as PigMiniGamePlayerController))
+		foreach (var player in pigMiniGameController.PlayerObjects)
 		{
-			if (pigPlayerController != null && pigPlayerController.GrabbablePigs.Contains(this))
+			if (player is PigMiniGamePlayerController pmgpc)
 			{
-				pigPlayerController.GrabbablePigs.Remove(this);
+				if (pmgpc.GrabbablePigs.Contains(this))
+				{
+					pmgpc.GrabbablePigs.Remove(this);
+				}
 			}
 		}
 		Destroy(GetComponent<BoxCollider>());
 		ModelCollider.enabled = true;
+		ModelCollider.gameObject.layer = LayerMask.NameToLayer($"p{pc.PlayerIndex + 1}");
+		ModelCollider.excludeLayers = LayerMask.GetMask($"p{pc.PlayerIndex + 1}");
+		ModelRigidBody.excludeLayers = LayerMask.GetMask($"p{pc.PlayerIndex + 1}");
 	}
 }

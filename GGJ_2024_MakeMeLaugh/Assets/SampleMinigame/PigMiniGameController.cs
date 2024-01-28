@@ -30,6 +30,7 @@ public class PigMiniGameController : MiniGameController
 		{
 			Basket = Instantiate(BasketPrefab, BasketSpawnPoints[player.PlayerIndex].position, Quaternion.identity);
 			Basket.playerIndex = player.PlayerIndex;
+			Basket.CreateColorObject.transform.GetChild(0).GetComponent<MeshRenderer>().material = player.PlayerData.material;
 			PlayerScoreTexts[player.PlayerIndex].color = player.PlayerData.color;
 		}
 

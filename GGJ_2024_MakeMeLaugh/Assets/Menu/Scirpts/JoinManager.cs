@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using ThroneRoom.Scripts;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,8 +11,7 @@ public class JoinManager : MonoBehaviour
 
 	private List<PlayerInput> _Players = new List<PlayerInput>();
 
-	[SerializeField] private string firstSceneName;
-
+	public MiniGamePreviewPanel PreviewPanel;
 	private void Start()
 	{
 		GameManager.Instance.PlayerJoined += OnPlayerJoin;
@@ -24,18 +24,16 @@ public class JoinManager : MonoBehaviour
 			.init(playerInput.GetComponent<PlayerController>());
 	}
 
+	private bool gamePicked;
 
 	private void Update()
 	{
-		if (_Players.Count >= 4 && _Players.All(x => x.GetComponent<PlayerData>().ready))
+		if (!gamePicked && _Players.Count >= 4 && _Players.All(x => x.GetComponent<PlayerData>().ready))
 		{
 			GameManager.Instance.PlayerIM.DisableJoining();
-
-
-			Debug.LogWarning("TODO: Load correct scene");
-
-			UnityEngine.SceneManagement.SceneManager.LoadScene(firstSceneName);
-
+			var pickedIndex = MiniGamePicker.PickMiniGame();
+			PreviewPanel.StartMiniGamePicker(pickedIndex);
+			gamePicked = true;
 		}
 	}
 

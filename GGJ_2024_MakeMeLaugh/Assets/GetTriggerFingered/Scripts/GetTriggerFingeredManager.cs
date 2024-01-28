@@ -18,7 +18,7 @@ public class GetTriggerFingeredManager : MonoBehaviour
     Dictionary<PlayerController, int> scores = new();
     public void AddScore(PlayerController player)
     {
-        scores.Add(player, scores.Count);
+        scores.TryAdd(player, scores.Count);
         if(scores.Count == 4)
         {
             winnerText.gameObject.SetActive(true);
