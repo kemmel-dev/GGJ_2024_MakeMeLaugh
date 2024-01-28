@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -13,6 +14,8 @@ public class TomatoJusticePlayerController : MiniGamePlayerController
     private AudioSource[] audioSources;
     private TMP_Text scoreText;
     private string color;
+    private float objectWidth;
+    private float objectHeight;
     public override void Initialize(PlayerController playerController)
     {
         base.Initialize(playerController);
@@ -27,8 +30,8 @@ public class TomatoJusticePlayerController : MiniGamePlayerController
         {
             Debug.Log(" testnull!");
         }
-
-       audioSources = this.GetComponents<AudioSource>();
+        SetupJester();
+        audioSources = this.GetComponents<AudioSource>();
     }
 
     private void Start()
@@ -37,6 +40,17 @@ public class TomatoJusticePlayerController : MiniGamePlayerController
         color = PlayerControllerReference.PlayerData.color.ToString();
         Debug.Log("color ===" + color);
     }
+   
+    private void SetupJester()
+    {
+        var jester = Instantiate(PlayerControllerReference.PlayerData.playerModel, transform);
+
+
+        jester.transform.localPosition = Vector3.zero;
+        jester.transform.localScale = Vector3.one * 6; // Multiply by 5 to increase size by 5 times
+        jester.transform.localRotation = Quaternion.Euler(0, 180, 0);
+    }
+
     private void getPlayerScoreTextMesh()
     {
        

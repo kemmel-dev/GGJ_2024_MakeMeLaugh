@@ -17,6 +17,8 @@ public class CountdownScript : MonoBehaviour
     {
         // Disable all scripts on the referenced game objects and their children
         SetScriptsActive(false);
+        GameManager.Instance.DeactivateInput();
+
     }
 
     private void Start()
@@ -63,10 +65,13 @@ public class CountdownScript : MonoBehaviour
             yield return new WaitForSeconds(1);
         }
 
+
         countdownText.text = "Go!";
+        yield return new WaitForSeconds(0.3f);
+        GameManager.Instance.ActivateInput();
 
         // Wait for a moment to let players see the 'Go!' message
-        yield return new WaitForSeconds(1);
+      
 
         countdownText.gameObject.SetActive(false); // Hide the countdown text
         explanationText.gameObject.SetActive(false); // Hide the explanation text

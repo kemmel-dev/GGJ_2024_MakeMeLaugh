@@ -55,7 +55,7 @@ public class SpawnEnemies : MonoBehaviour
         }
 
         // Generate a random threshold for prefab selection between 65 and 85
-        int spawnThreshold = Random.Range(63, 76); // 86 is exclusive, so the range is effectively 65-85
+        int spawnThreshold = Random.Range(60, 73); // 86 is exclusive, so the range is effectively 65-85
 
         // Generate a random number for determining which prefab to spawn
         int randomChance = Random.Range(0, 100);

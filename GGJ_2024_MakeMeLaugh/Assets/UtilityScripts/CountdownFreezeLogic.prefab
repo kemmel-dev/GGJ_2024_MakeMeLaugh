@@ -76,8 +76,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294111999
-  m_fontColor: {r: 1, g: 0.9481132, b: 0.9481132, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -211,7 +211,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294111999
-  m_fontColor: {r: 1, g: 0.9490197, b: 0.9490197, a: 1}
+  m_fontColor: {r: 1, g: 0.5582139, b: 0.2216981, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -228,8 +228,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 80
-  m_fontSizeBase: 80
+  m_fontSize: 160
+  m_fontSizeBase: 160
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -319,6 +319,7 @@ MonoBehaviour:
   explanationText: {fileID: 3664218469823838779}
   gameExplanation: Throw tomatoes at the other Jesters with X, Do not hit the king!
   gameObjectsToControl:
+  - {fileID: 0}
   - {fileID: 0}
   fadePanel: {fileID: 6028496180286257400}
 --- !u!1 &5560761731843715984
