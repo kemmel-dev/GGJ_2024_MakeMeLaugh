@@ -77,7 +77,13 @@ public class ProjectileMovement : MonoBehaviour
         if (other.gameObject.name.StartsWith("Friend"))
         {
             Debug.Log("ERRRORRRSETGOINGDOWN!!");
-            hitSound.Play(); // plays whoosh throwing sound!
+            NPCScript npc = other.gameObject.GetComponent<NPCScript>();
+            if (npc != null)
+            {
+                npc.SetStandStill();
+            }
+             hitSound.Play(); // plays whoosh throwing sound!
+
             if (playerController != null)
             {
                 goingUp = false;
