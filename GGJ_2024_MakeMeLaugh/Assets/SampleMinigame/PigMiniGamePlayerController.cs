@@ -82,12 +82,13 @@ public class PigMiniGamePlayerController : MiniGamePlayerController
 		CurrentPig.Collect(PlayerControllerReference);
 	}
 
-	public void DestroyPig()
+	public PigBehaviour DestroyPig()
 	{
+		var returnPig = CurrentPig;
 		Score += CurrentPig.Points;
-		Destroy(CurrentPig.gameObject);
 		CurrentPig = null;
 		PigSpawner.Instance.RemovePig();
+		return returnPig;
 	}
 
 	private void Start()
