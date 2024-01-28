@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3074381647664125536}
   - component: {fileID: 8182746448819139854}
   - component: {fileID: 8181155052369995371}
+  - component: {fileID: -1281438688295757870}
   m_Layer: 5
   m_Name: Joystick
   m_TagString: Untagged
@@ -75,3 +76,22 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &-1281438688295757870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6826985971094160633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 069e80bcd9e371e478a538b15263510e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Image: {fileID: 0}
+  m_SpriteArray:
+  - {fileID: -428683568, guid: 75d73daa341f3fb4ab286bdcfbd88b6a, type: 3}
+  - {fileID: -145390239, guid: 75d73daa341f3fb4ab286bdcfbd88b6a, type: 3}
+  - {fileID: -509838512, guid: 75d73daa341f3fb4ab286bdcfbd88b6a, type: 3}
+  - {fileID: 21931268, guid: 75d73daa341f3fb4ab286bdcfbd88b6a, type: 3}
+  m_Speed: 0.25

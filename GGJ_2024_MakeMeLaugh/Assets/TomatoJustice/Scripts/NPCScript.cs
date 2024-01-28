@@ -1,32 +1,41 @@
 using UnityEngine;
+using System.Collections; // Import to use Coroutines
 
 public class NPCScript : MonoBehaviour
 {
     private bool movingRight = true;
     [SerializeField] private float speed = 5f;
-    private bool FriendlyFire;
+    private float timer = 0f;
 
-    private float timer = 0f; // Timer to track the time elapsed
+    private bool isStandingStill = false; // New variable to track if the NPC is standing still
 
     void Update()
     {
-        // Increment the timer by the time elapsed since last frame
         timer += Time.deltaTime;
 
-        // Move the NPC in the correct direction
-        transform.Translate((movingRight ? Vector3.right : Vector3.left) * speed * Time.deltaTime);
+        // Move the NPC only if it is not standing still
+        if (!isStandingStill)
+        {
+            transform.Translate((movingRight ? Vector3.right : Vector3.left) * speed * Time.deltaTime);
+        }
 
-        // Check if the timer exceeds 7 seconds and destroy the game object if so
         if (timer > 12f)
         {
             Destroy(gameObject);
         }
+    }
 
-        //previous off-screen destroy logic can remain here if needed
-        // if (!GetComponent<Renderer>().isVisible)
-        // {
-        //     Destroy(gameObject);
-        // }
+    // Method to trigger the stand still behavior
+    public void SetStandStill(float waitTime)
+    {
+        StartCoroutine(StandStillCoroutine(waitTime));
+    }
+
+    IEnumerator StandStillCoroutine(float waitTime)
+    {
+        isStandingStill = true; // Stop the NPC from moving
+        yield return new WaitForSeconds(waitTime); // Wait for 2 seconds
+        isStandingStill = false; // Resume moving after 2 seconds
     }
 
     public void SetSpeed(float speedValue)
@@ -34,7 +43,6 @@ public class NPCScript : MonoBehaviour
         speed = speedValue;
     }
 
-    // New method to set the direction
     public void SetDirection(bool isMovingRight)
     {
         movingRight = isMovingRight;

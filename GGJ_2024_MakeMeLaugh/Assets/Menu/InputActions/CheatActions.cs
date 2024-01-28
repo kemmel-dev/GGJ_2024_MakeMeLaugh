@@ -44,6 +44,15 @@ public partial class @CheatActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Reset"",
+                    ""type"": ""Button"",
+                    ""id"": ""afc593fd-fb0c-4257-b5d5-03874d1b3d78"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -68,6 +77,17 @@ public partial class @CheatActions: IInputActionCollection2, IDisposable
                     ""action"": ""SetAllPlayersToReady"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7ba06c7a-a994-499c-aa35-88c9bfb475f8"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Reset"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -78,6 +98,7 @@ public partial class @CheatActions: IInputActionCollection2, IDisposable
         m_actions = asset.FindActionMap("actions", throwIfNotFound: true);
         m_actions_ExtraJoin = m_actions.FindAction("ExtraJoin", throwIfNotFound: true);
         m_actions_SetAllPlayersToReady = m_actions.FindAction("SetAllPlayersToReady", throwIfNotFound: true);
+        m_actions_Reset = m_actions.FindAction("Reset", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -141,12 +162,14 @@ public partial class @CheatActions: IInputActionCollection2, IDisposable
     private List<IActionsActions> m_ActionsActionsCallbackInterfaces = new List<IActionsActions>();
     private readonly InputAction m_actions_ExtraJoin;
     private readonly InputAction m_actions_SetAllPlayersToReady;
+    private readonly InputAction m_actions_Reset;
     public struct ActionsActions
     {
         private @CheatActions m_Wrapper;
         public ActionsActions(@CheatActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @ExtraJoin => m_Wrapper.m_actions_ExtraJoin;
         public InputAction @SetAllPlayersToReady => m_Wrapper.m_actions_SetAllPlayersToReady;
+        public InputAction @Reset => m_Wrapper.m_actions_Reset;
         public InputActionMap Get() { return m_Wrapper.m_actions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -162,6 +185,9 @@ public partial class @CheatActions: IInputActionCollection2, IDisposable
             @SetAllPlayersToReady.started += instance.OnSetAllPlayersToReady;
             @SetAllPlayersToReady.performed += instance.OnSetAllPlayersToReady;
             @SetAllPlayersToReady.canceled += instance.OnSetAllPlayersToReady;
+            @Reset.started += instance.OnReset;
+            @Reset.performed += instance.OnReset;
+            @Reset.canceled += instance.OnReset;
         }
 
         private void UnregisterCallbacks(IActionsActions instance)
@@ -172,6 +198,9 @@ public partial class @CheatActions: IInputActionCollection2, IDisposable
             @SetAllPlayersToReady.started -= instance.OnSetAllPlayersToReady;
             @SetAllPlayersToReady.performed -= instance.OnSetAllPlayersToReady;
             @SetAllPlayersToReady.canceled -= instance.OnSetAllPlayersToReady;
+            @Reset.started -= instance.OnReset;
+            @Reset.performed -= instance.OnReset;
+            @Reset.canceled -= instance.OnReset;
         }
 
         public void RemoveCallbacks(IActionsActions instance)
@@ -193,5 +222,6 @@ public partial class @CheatActions: IInputActionCollection2, IDisposable
     {
         void OnExtraJoin(InputAction.CallbackContext context);
         void OnSetAllPlayersToReady(InputAction.CallbackContext context);
+        void OnReset(InputAction.CallbackContext context);
     }
 }
