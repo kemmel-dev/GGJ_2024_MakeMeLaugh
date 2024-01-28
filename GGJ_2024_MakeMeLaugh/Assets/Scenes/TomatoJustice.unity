@@ -253,6 +253,17 @@ Transform:
   - {fileID: 549326099}
   m_Father: {fileID: 122255350}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &58809299 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3599652710653268424, guid: bc0ff131d5160124baa75eb39fb36811, type: 3}
+  m_PrefabInstance: {fileID: 2719607022115227426}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83d1a24181380fa4dbee14aaa4742571, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &83988059
 GameObject:
   m_ObjectHideFlags: 0
@@ -1672,6 +1683,7 @@ MonoBehaviour:
   timerText: {fileID: 891735911}
   totalTime: 30
   miniGameController: {fileID: 417581485}
+  countdownScript: {fileID: 58809299}
 --- !u!114 &891735911
 MonoBehaviour:
   m_ObjectHideFlags: 0

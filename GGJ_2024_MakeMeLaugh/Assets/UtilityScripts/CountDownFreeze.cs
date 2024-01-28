@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 using System.Collections;
 
-public class CountdownScript : MonoBehaviour
+public class CountdownFreeze : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI countdownText; // TextMeshPro for the countdown
     [SerializeField] private TextMeshProUGUI explanationText; // TextMeshPro for the game explanation
@@ -11,7 +11,7 @@ public class CountdownScript : MonoBehaviour
     [SerializeField] private GameObject[] gameObjectsToControl;
     [SerializeField] private Image fadePanel; // UI panel for the fade effect
 
-    private float fadeDuration = 2f; // Duration for the fade effect
+    private float fadeDuration = 3f; // Duration for the fade effect
 
     private void Awake()
     {
@@ -55,7 +55,19 @@ public class CountdownScript : MonoBehaviour
         StartCoroutine(StartCountdown());
     }
 
-    private IEnumerator StartCountdown()
+    // Method to fade the screen to black
+    public IEnumerator FadeToBlack()
+    {
+        fadePanel.gameObject.SetActive(true);
+        for (float t = 0; t < fadeDuration; t += Time.deltaTime)
+        {
+            float normalizedTime = t / fadeDuration;
+            fadePanel.color = new Color(fadePanel.color.r, fadePanel.color.g, fadePanel.color.b, Mathf.Lerp(0, 1, normalizedTime));
+            yield return null;
+        }
+
+    }
+        private IEnumerator StartCountdown()
     {
         // Perform the countdown
         countdownText.gameObject.SetActive(true);
