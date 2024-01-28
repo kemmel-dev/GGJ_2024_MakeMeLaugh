@@ -65,6 +65,11 @@ public class ProjectileMovement : MonoBehaviour
         // Check if the entering object has a name that starts with "Enemy"
         if (other.gameObject.name.StartsWith("Enemy"))
         {
+            NPCScript npc = other.gameObject.GetComponent<NPCScript>();
+            if (npc != null)
+            {
+                npc.SetStandStill(0.15f);
+            }
             // Increase player's score using the stored player controller reference
             if (playerController != null)
             {
@@ -77,7 +82,13 @@ public class ProjectileMovement : MonoBehaviour
         if (other.gameObject.name.StartsWith("Friend"))
         {
             Debug.Log("ERRRORRRSETGOINGDOWN!!");
-            hitSound.Play(); // plays whoosh throwing sound!
+            NPCScript npc = other.gameObject.GetComponent<NPCScript>();
+            if (npc != null)
+            {
+                npc.SetStandStill(1.7f);
+            }
+             hitSound.Play(); // plays whoosh throwing sound!
+
             if (playerController != null)
             {
                 goingUp = false;

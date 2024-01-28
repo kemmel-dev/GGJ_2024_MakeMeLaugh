@@ -22,6 +22,7 @@ public class GTFPlayerBehaviour : MiniGamePlayerController
     private float objectWidth;
     private float objectHeight;
 
+
     public override void Initialize(PlayerController playerController)
     {
         base.Initialize(playerController);
@@ -32,7 +33,7 @@ public class GTFPlayerBehaviour : MiniGamePlayerController
     }
     void Start()
     {
-        
+        GameManager.Instance.ActivateInput();
         body.transform.position = leftPoint.transform.position;
         mgManager = GameObject.FindObjectOfType<GetTriggerFingeredManager>();
         timerText = mgManager.timerText;
@@ -64,6 +65,7 @@ public class GTFPlayerBehaviour : MiniGamePlayerController
         amountDodged--;
         mgManager.PlayerScoreTexts[PlayerControllerReference.PlayerIndex].text = amountDodged.ToString();
         mgManager.PlaySound(clip, volume);
+        
         spawner.SetActive(false);
         mgManager.GetComponent<GetTriggerFingeredManager>().AddScore(PlayerControllerReference);
         gameObject.SetActive(false);
@@ -102,16 +104,18 @@ public class GTFPlayerBehaviour : MiniGamePlayerController
         for (int i = 0; i < CountDownTime; i++)
         {
             yield return new WaitForSeconds(1);
+
             timerText.text = (CountDownTime - i).ToString();
         }
         yield return new WaitForSeconds(1);
         timerText.text = "GO";
+        mgManager.TurnOffTutorial();
         yield return new WaitForSeconds(1);
-        GameManager.Instance.ActivateInput();
         spawner.GetComponent<SpawnerBehaviour>().Starter();
         timerText.gameObject.SetActive(false);
         StopCoroutine(CountDown());
     }
+
     private void SetupJester()
     {
         var jester = Instantiate(PlayerControllerReference.PlayerData.playerModel, body.transform);

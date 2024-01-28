@@ -3,8 +3,7 @@ using UnityEngine;
 
 public class PlayerData : MonoBehaviour
 {
-	[SerializeField]
-	private List<Color> Colors = new()
+	public List<Color> Colors = new()
 	{
 		Color.red,
 		Color.blue,

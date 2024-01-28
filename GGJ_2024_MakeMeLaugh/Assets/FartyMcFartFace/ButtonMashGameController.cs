@@ -18,6 +18,8 @@ public class ButtonMashGameController : MonoBehaviour
     public int countdownAmount;
     public int buttonMashTimerAmount;
 
+    public GameObject uiButtonControlls;
+
 
     private void Start()
     {
@@ -45,7 +47,7 @@ public class ButtonMashGameController : MonoBehaviour
         countdownUi.text = "Go!";
         var audio = GetComponent<AudioSource>();
         audio.Play();
-        /*ToggleCanMash();*/
+        uiButtonControlls.SetActive(false);
         GameManager.Instance.ActivateInput();
         StartCoroutine(ButtonMeshTimer(buttonMashTimerAmount));
 
@@ -80,11 +82,6 @@ public class ButtonMashGameController : MonoBehaviour
             playerScores.Add(player, buttonMashPlayers[player.PlayerIndex].amountOfButtonMashes);
         }
         GameManager.Instance.SetScorePerPlayer(playerScores);
-
-        buttonMashTestCounterUGUI.text = "Player 1: " + buttonMashPlayers[0].PlayerControllerReference.PlayerData.pointsThisRound +
-                                        " Player 2: " + buttonMashPlayers[1].PlayerControllerReference.PlayerData.pointsThisRound +
-                                        " Player 3: " + buttonMashPlayers[2].PlayerControllerReference.PlayerData.pointsThisRound +
-                                        " Player 4: " + buttonMashPlayers[3].PlayerControllerReference.PlayerData.pointsThisRound;
 
         // TODO Add logic for the fart visual
         foreach (var player in buttonMashPlayers)
