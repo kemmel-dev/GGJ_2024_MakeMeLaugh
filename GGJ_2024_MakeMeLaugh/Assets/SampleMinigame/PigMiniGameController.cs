@@ -16,6 +16,8 @@ public class PigMiniGameController : MiniGameController
 
 	public List<TextMeshProUGUI> PlayerScoreTexts;
 
+	public GameObject TutUI;
+
 	private void Awake()
 	{
 		MiniGameSetupFinished += OnMiniGameSetupFinished;
@@ -55,6 +57,7 @@ public class PigMiniGameController : MiniGameController
 		}
 		yield return new WaitForSeconds(1);
 		TimerText.text = "GO";
+		TutUI.SetActive(false);
 		GameManager.Instance.ActivateInput();
 		for (int i = 0; i < GameTime - 1; i++)
 		{

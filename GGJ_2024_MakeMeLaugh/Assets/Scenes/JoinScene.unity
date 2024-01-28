@@ -410,7 +410,7 @@ PrefabInstance:
       objectReference: {fileID: 1942672353}
     - target: {fileID: 172697000418654982, guid: 07d55bb7cb911a8419e301d35590c185, type: 3}
       propertyPath: firstSceneName
-      value: PigMiniGame
+      value: GetTriggerFingered
       objectReference: {fileID: 0}
     - target: {fileID: 172697000418654982, guid: 07d55bb7cb911a8419e301d35590c185, type: 3}
       propertyPath: ReadyControllerPrefabs.Array.size

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using ThroneRoom.Scripts;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -30,6 +31,7 @@ public class GameManager : MonoBehaviour
 		CheatActions.Enable();
 		CheatActions.actions.ExtraJoin.performed += ExtraJoinOnPerformed;
 		CheatActions.actions.SetAllPlayersToReady.performed += SetAllPlayersToReadyOnPerformed;
+		CheatActions.actions.Reset.performed += OnReset;
 
 		SceneManager.sceneLoaded += OnSceneLoaded;
 	}
@@ -40,6 +42,14 @@ public class GameManager : MonoBehaviour
 		miniGameController.OnMiniGameLoaded();
 	}
 
+	private void OnReset(InputAction.CallbackContext ctx)
+	{
+		Players.ForEach(controller => Destroy(controller.gameObject));
+		Destroy(gameObject);
+		Instance = null;
+		MiniGamePicker.ClearHashSet();
+		SceneManager.LoadScene("JoinScene");
+	}
 
 	private void ExtraJoinOnPerformed(InputAction.CallbackContext ctx)
 	{
@@ -118,6 +128,7 @@ public class GameManager : MonoBehaviour
 	{
 		CheatActions.actions.ExtraJoin.performed -= ExtraJoinOnPerformed;
 		CheatActions.actions.SetAllPlayersToReady.performed -= SetAllPlayersToReadyOnPerformed;
+		CheatActions.actions.Reset.performed -= OnReset;
 		SceneManager.sceneLoaded -= OnSceneLoaded;
 	}
 }
