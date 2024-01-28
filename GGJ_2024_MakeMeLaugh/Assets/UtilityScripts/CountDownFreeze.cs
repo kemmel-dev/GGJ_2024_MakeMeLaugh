@@ -77,6 +77,7 @@ public class CountdownFreeze : MonoBehaviour
             yield return new WaitForSeconds(1);
         }
 
+        GameManager.Instance.ActivateInput();
 
         countdownText.text = "Go!";
         yield return new WaitForSeconds(0.3f);
