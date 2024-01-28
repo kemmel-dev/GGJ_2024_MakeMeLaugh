@@ -8,7 +8,7 @@ public class PigMiniGamePlayerController : MiniGamePlayerController
 	public int Score = 0;
 	private Vector2 _LeftStickInput;
 	private Rigidbody _Rigidbody;
-
+	public List<GameObject> GameObjectToSetLayer = new List<GameObject>();
 	public float PlayerSpeed = 10;
 
 	public List<PigBehaviour> GrabbablePigs = new();
@@ -28,9 +28,32 @@ public class PigMiniGamePlayerController : MiniGamePlayerController
 	{
 		var jester = Instantiate(PlayerControllerReference.PlayerData.playerModel, transform);
 		jester.GetComponentInChildren<MeshFilter>().AddComponent<BoxCollider>();
+		var layermask = LayerMask.NameToLayer($"p{PlayerControllerReference.PlayerIndex + 1}");
+		transform.gameObject.layer = layermask;
+
+		//can you add all children of this gameobject to a list recusive
+		//then set all of them to the layermask
+		foreach (var transform in GetComponentsInChildren<Transform>())
+		{
+			//var layermask = LayerMask.NameToLayer($"p{PlayerControllerReference.PlayerIndex + 1}");
+			transform.gameObject.layer = layermask;
+		}
+
+		SetLayerMasks(jester.transform);
+		jester.layer = layermask;
 		jester.transform.localPosition = Vector3.zero;
 		jester.transform.localScale = Vector3.one * 1.5f;
 		jester.transform.localRotation = Quaternion.Euler(0, 180, 0);
+	}
+
+	private void SetLayerMasks(Transform transform)
+	{
+		foreach (var obj in GameObjectToSetLayer)
+		{
+			var layermask = LayerMask.NameToLayer($"p{PlayerControllerReference.PlayerIndex + 1}");
+			obj.layer = layermask;
+			//transform.gameObject.layer = LayerMask.GetMask($"p{PlayerControllerReference.PlayerIndex + 1}");
+		}
 	}
 
 	private void PlayerControllerOnLeftStick(InputAction.CallbackContext ctx)
@@ -52,8 +75,11 @@ public class PigMiniGamePlayerController : MiniGamePlayerController
 		if (GrabbablePigs.Count <= 0 || HasPig) return;
 		CurrentPig = GrabbablePigs[0];
 		CurrentPig.transform.SetParent(transform);
+		CurrentPig.gameObject.layer = LayerMask.NameToLayer($"p{PlayerControllerReference.PlayerIndex + 1}");
 		GrabbablePigs.Remove(CurrentPig);
-		CurrentPig.Collect();
+
+
+		CurrentPig.Collect(PlayerControllerReference);
 	}
 
 	public void DestroyPig()
