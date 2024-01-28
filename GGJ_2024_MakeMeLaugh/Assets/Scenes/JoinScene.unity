@@ -197,6 +197,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 172697000418654982, guid: 07d55bb7cb911a8419e301d35590c185, type: 3}
+      propertyPath: firstSceneName
+      value: FartyMcFartFace
+      objectReference: {fileID: 0}
+    - target: {fileID: 172697000418654982, guid: 07d55bb7cb911a8419e301d35590c185, type: 3}
       propertyPath: ReadyControllerPrefabs.Array.size
       value: 4
       objectReference: {fileID: 0}
