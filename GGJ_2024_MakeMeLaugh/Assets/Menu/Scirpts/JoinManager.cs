@@ -31,7 +31,7 @@ public class JoinManager : MonoBehaviour
 		if (!gamePicked && _Players.Count >= 4 && _Players.All(x => x.GetComponent<PlayerData>().ready))
 		{
 			GameManager.Instance.PlayerIM.DisableJoining();
-			var pickedIndex = MiniGamePicker.PickMiniGame("PigMiniGame");
+			var pickedIndex = MiniGamePicker.PickMiniGame();
 			PreviewPanel.StartMiniGamePicker(pickedIndex);
 			gamePicked = true;
 		}
