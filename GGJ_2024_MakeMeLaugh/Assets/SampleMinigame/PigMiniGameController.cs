@@ -9,6 +9,11 @@ public class PigMiniGameController : MiniGameController
 	public int CountDownTime = 5;
 	public int GameTime = 30;
 	public TextMeshProUGUI TimerText;
+	public List<Transform> BasketSpawnPoints = new List<Transform>();
+
+	public BasketBehaviour BasketPrefab;
+	public BasketBehaviour Basket;
+
 	public List<TextMeshProUGUI> PlayerScoreTexts;
 
 	private void Awake()
@@ -20,6 +25,16 @@ public class PigMiniGameController : MiniGameController
 	private void OnMiniGameSetupFinished()
 	{
 		StartCoroutine(CountDown());
+		if (GameManager.Instance == null) return;
+		foreach (var player in GameManager.Instance.Players)
+		{
+			Basket = Instantiate(BasketPrefab, BasketSpawnPoints[player.PlayerIndex].position, Quaternion.identity);
+			Basket.playerIndex = player.PlayerIndex;
+			Basket.CreateColorObject.transform.GetChild(0).GetComponent<MeshRenderer>().material = player.PlayerData.material;
+			PlayerScoreTexts[player.PlayerIndex].color = player.PlayerData.color;
+		}
+
+
 	}
 
 	private void Update()
@@ -27,7 +42,6 @@ public class PigMiniGameController : MiniGameController
 		if (GameManager.Instance == null) return;
 		foreach (var player in GameManager.Instance.Players)
 		{
-
 			PlayerScoreTexts[player.PlayerIndex].text = $"Player {player.PlayerIndex + 1}: {((PigMiniGamePlayerController)PlayerObjects[player.PlayerIndex]).Score}";
 		}
 	}

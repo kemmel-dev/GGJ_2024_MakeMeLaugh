@@ -3,23 +3,40 @@ using UnityEngine;
 public class PigBehaviour : MonoBehaviour
 {
 	public int Points = 1;
-	private void OnTriggerEnter2D(Collider2D other)
+	public PigMiniGameController pigMiniGameController;
+	public BoxCollider ModelCollider;
+	public Rigidbody ModelRigidBody;
+	private void OnTriggerEnter(Collider other)
 	{
-		if (other.TryGetComponent<PigMiniGamePlayerController>(out var playerController))
+		if (other.transform.root.TryGetComponent<PigMiniGamePlayerController>(out var playerController))
 		{
 			playerController.GrabbablePigs.Add(this);
 		}
 	}
-	private void OnTriggerExit2D(Collider2D other)
+	private void OnTriggerExit(Collider other)
 	{
-		if (other.TryGetComponent<PigMiniGamePlayerController>(out var playerController))
+		if (other.transform.root.TryGetComponent<PigMiniGamePlayerController>(out var playerController))
 		{
 			playerController.GrabbablePigs.Remove(this);
 		}
 	}
 
-	public void Collect()
+	public void Collect(PlayerController pc)
 	{
-		Destroy(GetComponent<BoxCollider2D>());
+		foreach (var player in pigMiniGameController.PlayerObjects)
+		{
+			if (player is PigMiniGamePlayerController pmgpc)
+			{
+				if (pmgpc.GrabbablePigs.Contains(this))
+				{
+					pmgpc.GrabbablePigs.Remove(this);
+				}
+			}
+		}
+		Destroy(GetComponent<BoxCollider>());
+		ModelCollider.enabled = true;
+		ModelCollider.gameObject.layer = LayerMask.NameToLayer($"p{pc.PlayerIndex + 1}");
+		ModelCollider.excludeLayers = LayerMask.GetMask($"p{pc.PlayerIndex + 1}");
+		ModelRigidBody.excludeLayers = LayerMask.GetMask($"p{pc.PlayerIndex + 1}");
 	}
 }

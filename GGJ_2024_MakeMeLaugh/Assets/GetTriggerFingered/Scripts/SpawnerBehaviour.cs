@@ -11,9 +11,19 @@ public class SpawnerBehaviour : MonoBehaviour
     public float maxBallSpeed = 40f;
     public float acceleration = 1.05f;
     public float minWaitTime = 1.5f;
+    public GameObject player;
+    public GetTriggerFingeredManager mgManager;
+    public AudioClip clip;
+    [Range(0f, 1f)]
+    public float volume = 1f;
 
     // Start is called before the first frame update
     void Start()
+    {
+        mgManager = GameObject.FindObjectOfType<GetTriggerFingeredManager>();
+    }
+
+    public void Starter()
     {
         StartCoroutine(SpawnBall());
     }
@@ -47,12 +57,13 @@ public class SpawnerBehaviour : MonoBehaviour
             {
                 waitTime = minWaitTime;
             }
+            player.GetComponent<GTFPlayerBehaviour>().Dodged();
+            mgManager.PlaySound(clip, volume);
             yield return new WaitForSeconds(waitTime);
         }
 
         
     }
-
     private float GetRandom()
     {
         float rdm = Random.Range(0f, 1f);
