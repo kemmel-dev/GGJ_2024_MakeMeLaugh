@@ -13,7 +13,7 @@ namespace ThroneRoom.Scripts
         {
             if (sceneName != null)
             {
-                SceneManager.LoadScene(sceneName);
+                SceneManager.LoadScene("TomatoJustice");
                 return;
             }
             
@@ -31,7 +31,7 @@ namespace ThroneRoom.Scripts
                 _playedMiniGames.Add(pickedIndex);
                 break;
             }
-            SceneManager.LoadScene(pickedIndex);
+            SceneManager.LoadScene("TomatoJustice");
         }
 
         public static void ClearHashSet()
