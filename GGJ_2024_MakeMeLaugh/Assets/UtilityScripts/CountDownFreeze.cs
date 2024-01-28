@@ -6,7 +6,7 @@ using System.Collections;
 public class CountdownFreeze : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI countdownText; // TextMeshPro for the countdown
-    [SerializeField] private SpriteRenderer spriteRenderXButs;
+    [SerializeField] private GameObject SpriteInstruction;
     [SerializeField] private GameObject[] gameObjectsToControl;
     [SerializeField] private Image fadePanel; // UI panel for the fade effect
 
@@ -23,7 +23,7 @@ public class CountdownFreeze : MonoBehaviour
     private void Start()
     {
      //   GameManager.Instance.DeactivateInput(); shit didnt work???
-        if (countdownText == null || spriteRenderXButs == null || fadePanel == null)
+        if (countdownText == null || fadePanel == null)
         {
             Debug.LogError("Required components are not assigned.");
             return;
@@ -87,7 +87,7 @@ public class CountdownFreeze : MonoBehaviour
       
 
         countdownText.gameObject.SetActive(false); // Hide the countdown text
-        spriteRenderXButs.gameObject.SetActive(false); // Hide the explanation text
+        SpriteInstruction.SetActive(false); // Hide the explanation text
 
         // Reactivate the scripts on the game objects
         SetScriptsActive(true);

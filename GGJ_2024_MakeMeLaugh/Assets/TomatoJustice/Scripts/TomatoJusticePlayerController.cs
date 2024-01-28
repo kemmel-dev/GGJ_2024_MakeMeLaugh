@@ -14,10 +14,9 @@ public class TomatoJusticePlayerController : MiniGamePlayerController
     private AudioSource[] audioSources;
     private TMP_Text scoreText;
     private string color;
-    private float objectWidth;
-    private float objectHeight;
+ 
     private float timeSinceLastShot = 0.0f; // Timer to track time since the last shot
-    private const float shootingRate = 1.0f / 5.0f; // 5 shots per second
+    private const float shootingRate = 1.0f / 3.5f; // 5 shots per second
 
     public override void Initialize(PlayerController playerController)
     {
@@ -56,10 +55,6 @@ public class TomatoJusticePlayerController : MiniGamePlayerController
 
     private void getPlayerScoreTextMesh()
     {
-       
-    
-      
-       
         if (PlayerControllerReference.PlayerIndex == 0)
         {
             scoreText = GameObject.Find("Player1Score").GetComponent<TMP_Text>();
