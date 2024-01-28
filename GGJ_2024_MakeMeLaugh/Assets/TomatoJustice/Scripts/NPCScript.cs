@@ -12,11 +12,16 @@ public class NPCScript : MonoBehaviour
         transform.Translate((movingRight ? Vector3.right : Vector3.left) * speed * Time.deltaTime);
 
 
-        // Destroy if off-screen
+       // Destroy if off-screen
         if (!GetComponent<Renderer>().isVisible)
         {
-            Destroy(gameObject);
+
+            //Destroy(gameObject); //EDit add timer to rm later!
         }
+
+            //Destroy(gameObject);
+        
+
     }
 
    

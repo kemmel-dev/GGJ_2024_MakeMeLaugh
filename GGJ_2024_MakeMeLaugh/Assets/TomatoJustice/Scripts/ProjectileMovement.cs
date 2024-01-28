@@ -1,25 +1,53 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class ProjectileMovement : MonoBehaviour
 {
-    [SerializeField] private float speed = 5f;
+    [SerializeField] private float speed = 3f;
+    [SerializeField] private float speedSlow = 2f;
     private TomatoJusticePlayerController playerController;
-
+    private bool goingUp = true;
+    [SerializeField]
+    private AudioSource hitSound;
+    private bool canCheckVisibility = false;
+    void Start()
+    {
+        StartCoroutine(DelayVisibilityCheck()); // Add this line
+    }
+    // Add this coroutine method
+    private IEnumerator DelayVisibilityCheck()
+    {
+        yield return new WaitForSeconds(2f);
+        canCheckVisibility = true;
+    }
     // Add a method to set the player controller reference
     public void SetPlayerController(TomatoJusticePlayerController controller)
     {
         playerController = controller;
+        Debug.Log("SetGoingDown0???" + goingUp);
     }
 
     void FixedUpdate()
     {
-        transform.Translate(Vector3.up * speed * Time.deltaTime);
-
+        Debug.Log("FixedUpdate called. Going up? " + goingUp);
+        if (goingUp)
+        {
+            transform.Translate(Vector3.up * speed * Time.deltaTime);
+            Debug.Log("goingup");
+        }
+        else if (!goingUp) 
+        {
+            transform.Translate(Vector3.down * speedSlow * Time.deltaTime);
+            Debug.Log("goingDOWN");
+        }
         // Destroy if off-screen
-        if (!IsVisibleFromCamera())
+        if (canCheckVisibility && !IsVisibleFromCamera())
         {
             Destroy(gameObject);
         }
+
+        Debug.Log("SetFixedUpdate" + goingUp);
     }
 
     private bool IsVisibleFromCamera()
@@ -42,17 +70,32 @@ public class ProjectileMovement : MonoBehaviour
             {
                 playerController.IncreaseScore(1); // You should have a method to increase the player's score in PlayerController
             }
+            // Always destroy the tomato
+            Destroy(gameObject);
         }
         // Check if the entering object has a name that starts with "Enemy"
         if (other.gameObject.name.StartsWith("Friend"))
         {
-            // Increase player's score using the stored player controller reference
+            Debug.Log("ERRRORRRSETGOINGDOWN!!");
+            hitSound.Play(); // plays whoosh throwing sound!
             if (playerController != null)
             {
-                playerController.DecreaseScore(1); // You should have a method to increase the player's score in PlayerController
+                goingUp = false;
+             
+                
             }
         }
-        // Always destroy the tomato
-        Destroy(gameObject);
+        if (other.CompareTag("Player") && !goingUp)
+        {
+           
+            if (playerController != null)
+            {
+                playerController.DecreaseScore(1);
+            }
+            // Always destroy the tomato
+            Destroy(gameObject);
+        }
+       
+     
     }
 }

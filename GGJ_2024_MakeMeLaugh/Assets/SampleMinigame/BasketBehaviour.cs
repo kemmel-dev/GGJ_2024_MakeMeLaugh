@@ -3,9 +3,11 @@ using UnityEngine;
 public class BasketBehaviour : MonoBehaviour
 {
 	public int playerIndex = -1;
-	private void OnTriggerEnter2D(Collider2D other)
+	public GameObject CreateColorObject;
+	private void OnTriggerEnter(Collider other)
 	{
-		if (other.TryGetComponent<PigMiniGamePlayerController>(out var playerController)
+		Debug.Log(other.transform.root.name);
+		if (other.transform.root.TryGetComponent<PigMiniGamePlayerController>(out var playerController)
 			&& playerController.HasPig
 			&& playerController.PlayerControllerReference.PlayerIndex == playerIndex)
 		{

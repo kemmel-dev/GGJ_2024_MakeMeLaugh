@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-	public static GameManager Instance { get; private set; }
+	public static GameManager Instance { get; set; }
 
 	public event Action<PlayerInput> PlayerJoined;
 
@@ -56,9 +56,9 @@ public class GameManager : MonoBehaviour
 			ExtraJoinOnPerformed(ctx);
 		}
 		DeactivateInput();
-		foreach (var player in Players)
+		foreach (var player in Players.Where(x => !x.PlayerData.ready))
 		{
-			player.PlayerData.ready = true;
+			player.OnPlayerReady();
 		}
 	}
 
@@ -114,4 +114,10 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
+	private void OnDestroy()
+	{
+		CheatActions.actions.ExtraJoin.performed -= ExtraJoinOnPerformed;
+		CheatActions.actions.SetAllPlayersToReady.performed -= SetAllPlayersToReadyOnPerformed;
+		SceneManager.sceneLoaded -= OnSceneLoaded;
+	}
 }

@@ -9,6 +9,7 @@ public class CheckCollision : MonoBehaviour
     {
         if (collision.tag == "Ball")
         {
+            Destroy(collision.gameObject);
             parent.GetComponent<GTFPlayerBehaviour>().Die();
         }
     }
