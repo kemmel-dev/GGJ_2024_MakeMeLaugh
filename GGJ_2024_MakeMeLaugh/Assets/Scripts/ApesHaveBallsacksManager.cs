@@ -23,12 +23,13 @@ public class ApesHaveBallsacksManager : MonoBehaviour
     private Vector2 screenBounds;
     private float timeRemaining;
     private bool Finished = false;
-    private MiniGameController miniGameController;
+    public MiniGameController miniGameController;
     public Canvas canvas;
     public TextMeshProUGUI TimerText;
     public List<TextMeshProUGUI> PlayerScoreTexts;
 
     List<BallsackMovement> ballsackMovements = new List<BallsackMovement>();
+    public List<Transform> SpawnPoints = new List<Transform>();
 
     void Start()
     {
@@ -56,6 +57,8 @@ public class ApesHaveBallsacksManager : MonoBehaviour
         {
             PlayerScoreTexts[player.PlayerIndex].color = ballsackMovements[player.PlayerIndex].color;
         }
+
+        miniGameController = FindAnyObjectByType<MiniGameController>().GetComponent<MiniGameController>();
     }
 
     public void RespawnApe()
@@ -68,11 +71,7 @@ public class ApesHaveBallsacksManager : MonoBehaviour
 
              if(distance > minDistance)
          } while{distance < minDistance}*/
-        Vector3 newPos = new Vector3(Random.Range(0 - (playerArea.transform.localScale.x / 2) + 3.5f , 0 + (playerArea.transform.localScale.x / 2) - 0.5f), Random.Range(0 - (playerArea.transform.localScale.y / 2) + 1.5f, 0 + (playerArea.transform.localScale.y / 2) - 1.5f), -1);
-        Debug.Log(0 - (playerArea.transform.localScale.x / 2) + 1);
-        Debug.Log(0 + (playerArea.transform.localScale.x / 2) - 1.5);
-        Debug.Log(0 - (playerArea.transform.localScale.y / 2) + 1);
-        Debug.Log(0 + (playerArea.transform.localScale.y / 2) - 1.5);
+        Vector3 newPos = new Vector3(Random.Range(0 - (playerArea.transform.localScale.x / 2) + 4.5f , 0 + (playerArea.transform.localScale.x / 2) - 7f), Random.Range(0 - (playerArea.transform.localScale.y / 2) - 1.5f, 0 + (playerArea.transform.localScale.y / 2) + 1.5f), -1);
         Ape.position = newPos;
     }
 
@@ -81,8 +80,8 @@ public class ApesHaveBallsacksManager : MonoBehaviour
         if (GameManager.Instance == null) return;
         foreach (var player in GameManager.Instance.Players)
         {
-            
             PlayerScoreTexts[player.PlayerIndex].text = $"Player {player.PlayerIndex + 1}: {(ballsackMovements[player.PlayerIndex]).score}";
+            Debug.Log((ballsackMovements[player.PlayerIndex]).score);
         }
         if (timeRemaining > 0)
         {

@@ -12,6 +12,7 @@ public class PlayerData : MonoBehaviour
 	};
 
 	[SerializeField] private List<GameObject> PlayerModels = new();
+	[SerializeField] private List<GameObject> BallsackModels = new();
 	[SerializeField] private List<Material> Materials = new();
 	private PlayerController PlayerControllerReference => GetComponent<PlayerController>();
 
@@ -20,6 +21,7 @@ public class PlayerData : MonoBehaviour
 	public int pointsThisRound = 0;
 	public Color color => Colors[PlayerControllerReference.PlayerIndex];
 	public GameObject playerModel => PlayerModels[PlayerControllerReference.PlayerIndex];
+	public GameObject playerBallsackModel => BallsackModels[PlayerControllerReference.PlayerIndex];
 	public Material material => Materials[PlayerControllerReference.PlayerIndex];
 
 	public bool isPlaying = true;
