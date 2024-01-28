@@ -39,6 +39,8 @@ public class BallsackMovement : MiniGamePlayerController
             spriteRenderer.color = playerController.PlayerData.color;
             color = playerController.PlayerData.color;
         }
+
+        setupPlayer();
     }
 
     private void Start()
@@ -46,6 +48,19 @@ public class BallsackMovement : MiniGamePlayerController
         Camera mainCamera = Camera.main;
         screenBounds = mainCamera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, mainCamera.transform.position.z));
     }
+
+    public void setupPlayer()
+    {
+        var ballsack = Instantiate(PlayerControllerReference.PlayerData.playerBallsackModel, transform.GetChild(0));
+        /*var coll = jester.GetComponentInChildren<MeshFilter>().AddComponent<BoxCollider2D>();
+        objectWidth = coll.bounds.size.x;
+        objectHeight = coll.bounds.size.y;*/
+
+        ballsack.transform.localPosition = Vector3.zero;
+        ballsack.transform.localScale = Vector3.one * 1.5f;
+        ballsack.transform.localRotation = Quaternion.Euler(0, 180, 0);
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.GetComponent<Transform>().parent.transform == manager.Ape.transform)
