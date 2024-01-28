@@ -9,8 +9,14 @@ namespace ThroneRoom.Scripts
     {
         private static HashSet<int> _playedMiniGames = new ();
 
-        public static void PickMiniGame()
+        public static void PickMiniGame(string sceneName = null)
         {
+            if (sceneName != null)
+            {
+                SceneManager.LoadScene(sceneName);
+                return;
+            }
+            
             int pickedIndex;
 
             if (_playedMiniGames.Count >= 6)
