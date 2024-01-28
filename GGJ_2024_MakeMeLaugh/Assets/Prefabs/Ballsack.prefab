@@ -173,9 +173,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerControllerReference: {fileID: 0}
-  speed: 10
+  speed: 8
   player: {fileID: 2811793621894694109}
   manager: {fileID: 0}
+  score: 0
 --- !u!1 &5541916761936810816
 GameObject:
   m_ObjectHideFlags: 0
