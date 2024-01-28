@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class CountdownTimer : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class CountdownTimer : MonoBehaviour
     private float currentTime;
     private bool isTimerRunning = true;
     public MiniGameController miniGameController;
+
+    public CountdownFreeze countdownScript; // Reference to the CountdownScript
     private void Start()
     {
         currentTime = totalTime;
@@ -27,7 +30,9 @@ public class CountdownTimer : MonoBehaviour
                 currentTime = 0f;
                 isTimerRunning = false;
                 // Call a function to handle game over or other actions
-                GameOver();
+
+
+                StartCoroutine(GameOver());
             }
 
             UpdateTimerDisplay();
@@ -40,13 +45,14 @@ public class CountdownTimer : MonoBehaviour
         timerText.text = seconds.ToString();
     }
 
-    private void GameOver()
+    private IEnumerator GameOver()
     {
 
         // Perform game over actions here, such as stopping gameplay or showing a game over screen.
-        
+        yield return StartCoroutine(countdownScript.FadeToBlack());
 
-     
+      
+
         Dictionary<PlayerController, int> playerScores = new();
         foreach (MiniGamePlayerController player in miniGameController.PlayerObjects)
         {
