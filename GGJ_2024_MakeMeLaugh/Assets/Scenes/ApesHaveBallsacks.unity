@@ -1837,7 +1837,7 @@ MonoBehaviour:
   startPosBallsack: {fileID: 224499175}
   startPosApe: {fileID: 1283565803}
   minDistance: 10
-  startTime: 600
+  startTime: 5
   playerArea: {fileID: 1321642731}
   m_MyEvent:
     m_PersistentCalls:

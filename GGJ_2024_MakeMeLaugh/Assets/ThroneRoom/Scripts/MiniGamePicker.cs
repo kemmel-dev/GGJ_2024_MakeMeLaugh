@@ -14,19 +14,20 @@ namespace ThroneRoom.Scripts
         {
             if (sceneName != null)
             {
-                SceneManager.LoadScene(SceneManager.GetSceneByName(sceneName).buildIndex);
+                SceneManager.LoadScene(sceneName);
             }
             
-            int pickedIndex;
+            int pickedIndex = -500;
 
             if (_playedMiniGames.Count >= 5)
             {
                 ClearHashSet();
             }
-            
-            while (true)
+
+            for (int i = 0; i < 10000; i++)
             {
-                pickedIndex =  Random.Range(3, SceneManager.sceneCountInBuildSettings - 3 + 1);
+                pickedIndex =  Random.Range(3, 7 + 1);
+                
                 if (_playedMiniGames.Contains(pickedIndex)) continue;
                 _playedMiniGames.Add(pickedIndex);
                 break;
