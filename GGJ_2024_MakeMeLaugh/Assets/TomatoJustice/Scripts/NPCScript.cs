@@ -26,15 +26,15 @@ public class NPCScript : MonoBehaviour
     }
 
     // Method to trigger the stand still behavior
-    public void SetStandStill()
+    public void SetStandStill(float waitTime)
     {
-        StartCoroutine(StandStillCoroutine());
+        StartCoroutine(StandStillCoroutine(waitTime));
     }
 
-    IEnumerator StandStillCoroutine()
+    IEnumerator StandStillCoroutine(float waitTime)
     {
         isStandingStill = true; // Stop the NPC from moving
-        yield return new WaitForSeconds(2f); // Wait for 2 seconds
+        yield return new WaitForSeconds(waitTime); // Wait for 2 seconds
         isStandingStill = false; // Resume moving after 2 seconds
     }
 
