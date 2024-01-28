@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &8930649663349205853
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 676407324090387718, guid: f9f607a573292604ab5fcef517281c37, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 676407324090387718, guid: f9f607a573292604ab5fcef517281c37, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 676407324090387718, guid: f9f607a573292604ab5fcef517281c37, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 676407324090387718, guid: f9f607a573292604ab5fcef517281c37, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 676407324090387718, guid: f9f607a573292604ab5fcef517281c37, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 676407324090387718, guid: f9f607a573292604ab5fcef517281c37, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 676407324090387718, guid: f9f607a573292604ab5fcef517281c37, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 676407324090387718, guid: f9f607a573292604ab5fcef517281c37, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 676407324090387718, guid: f9f607a573292604ab5fcef517281c37, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 676407324090387718, guid: f9f607a573292604ab5fcef517281c37, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7732287209943008135, guid: f9f607a573292604ab5fcef517281c37, type: 3}
+      propertyPath: m_Name
+      value: Throne Green Variant
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 1450870355462123834, guid: f9f607a573292604ab5fcef517281c37, type: 3}
+    - {fileID: 2281693126712518680, guid: f9f607a573292604ab5fcef517281c37, type: 3}
+    - {fileID: 1219523142114382799, guid: f9f607a573292604ab5fcef517281c37, type: 3}
+    - {fileID: 1160100794765361677, guid: f9f607a573292604ab5fcef517281c37, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f9f607a573292604ab5fcef517281c37, type: 3}

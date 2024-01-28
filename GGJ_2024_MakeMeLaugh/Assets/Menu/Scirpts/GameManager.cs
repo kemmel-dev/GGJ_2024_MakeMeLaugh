@@ -56,9 +56,9 @@ public class GameManager : MonoBehaviour
 			ExtraJoinOnPerformed(ctx);
 		}
 		DeactivateInput();
-		foreach (var player in Players)
+		foreach (var player in Players.Where(x => !x.PlayerData.ready))
 		{
-			player.PlayerData.ready = true;
+			player.OnPlayerReady();
 		}
 	}
 
