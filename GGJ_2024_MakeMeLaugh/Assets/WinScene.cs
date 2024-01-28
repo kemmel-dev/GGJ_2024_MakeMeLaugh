@@ -23,7 +23,7 @@ public class WinScene : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.anyKey)
         {
             OnReloadGame();
         }
